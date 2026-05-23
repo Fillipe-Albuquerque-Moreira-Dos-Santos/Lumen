@@ -32,8 +32,8 @@ O CI roda isso em todo push/PR.
 Cada skill é um `SKILL.md` com frontmatter (`name`, `description`, `metadata`). Mantenha:
 
 - A escala de confiança 🟢 / 🟡 / 🔴 nas specs.
-- A regra de que só o `lumen-build` escreve código do projeto.
-- O formato de task do motor no `lumen-tasks` (frontmatter v2, `title` == primeiro H1).
+- A regra de que só o `lumen-construtor` escreve código do projeto.
+- O formato de task do motor no `lumen-tarefas` (frontmatter v2, `title` == primeiro H1).
 
 ## Commits
 

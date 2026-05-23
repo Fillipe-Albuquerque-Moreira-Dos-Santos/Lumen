@@ -43,7 +43,7 @@ O Lumen é o único agente que **escreve** no state.json. Os demais agentes apen
 }
 ```
 
-### Ao marcar uma tarefa parcial do Archaeologist
+### Ao marcar uma tarefa parcial do Analista
 ```json
 {
   "checkpoints": {
@@ -94,7 +94,7 @@ Ao mover de fase:
     }
   },
   "engines": ["claude-code"],
-  "agents": ["lumen", "lumen-scout", "lumen-archaeologist"],
+  "agents": ["lumen", "lumen-mapeador", "lumen-analista"],
   "created_files": []
 }
 ```

@@ -42,9 +42,9 @@ check('.lumen/state.json', existsSync(join(proj, '.lumen/state.json')));
 check('.lumen/_manifest.json', existsSync(join(proj, '.lumen/_manifest.json')));
 
 // --- UPDATE: deve preservar edits do usuário e restaurar arquivos apagados ---
-const userEdited = join(proj, '.claude/skills/lumen-scout/SKILL.md');
+const userEdited = join(proj, '.claude/skills/lumen-mapeador/SKILL.md');
 appendFileSync(userEdited, '\n\n<!-- USER EDIT -->\n', 'utf8');
-const deleted = join(proj, '.claude/skills/lumen-prd/SKILL.md');
+const deleted = join(proj, '.claude/skills/lumen-requisitos/SKILL.md');
 rmSync(deleted);
 
 process.chdir(proj);

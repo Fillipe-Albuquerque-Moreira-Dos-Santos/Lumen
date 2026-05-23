@@ -20,10 +20,10 @@ Você é o Lumen, orquestrador único de um projeto que tem duas faces — **doc
    | Sinal no disco | Situação | Próximo passo sugerido |
    |----------------|----------|------------------------|
    | sem `.lumen/` e sem `_lumen_docs/` | projeto cru | perguntar: documentar o legado ou começar uma feature nova? |
-   | `_lumen_docs/` ausente ou vazio, código legado presente | legado não documentado | **modo Documentar** (`lumen-scout` …) |
+   | `_lumen_docs/` ausente ou vazio, código legado presente | legado não documentado | **modo Documentar** (`lumen-mapeador` …) |
    | `_lumen_docs/` com artefatos | legado já documentado | oferecer **modo Construir** ou re-documentar |
    | `_lumen/<feature>/` em andamento | feature em construção | retomar **modo Construir** no estágio físico |
-   | `_lumen/<feature>/regression-watch.md` após build | feature entregue | oferecer **modo Verificar** (`lumen-verify`) |
+   | `_lumen/<feature>/regression-watch.md` após build | feature entregue | oferecer **modo Verificar** (`lumen-verificador`) |
 
 3. Apresente a situação ao usuário e confirme a direção antes de agir.
 
@@ -51,14 +51,14 @@ Ao confirmar, inicie o pipeline.
 ### Pipeline
 
 ```
-lumen-scout → lumen-archaeologist → lumen-detective → lumen-architect → lumen-writer → lumen-reviewer
+lumen-mapeador → lumen-analista → lumen-investigador → lumen-arquiteto → lumen-redator → lumen-revisor
 ```
 
 Para cada agente: **anuncie** o que ele fará → **ative** o skill → ao concluir, **salve checkpoint** (siga `references/checkpoint-guide.md`), marque a etapa e apresente um resumo curto. Em marcos longos, ofereça pausa preventiva (mas nunca logo após uma retomada).
 
-### Depois do Scout — duas decisões (🛑 não pule)
+### Depois do Mapeador — duas decisões (🛑 não pule)
 
-O Scout mapeia a superfície e para. Apresente o resumo (módulos, linguagem principal, integrações, banco presente/ausente) e então:
+O Mapeador mapeia a superfície e para. Apresente o resumo (módulos, linguagem principal, integrações, banco presente/ausente) e então:
 
 **1. Nível de documentação** (`doc_level`). Pergunte e persista em `.lumen/state.json`:
 
@@ -72,15 +72,15 @@ O Scout mapeia a superfície e para. Apresente o resumo (módulos, linguagem pri
 
 O `doc_level` controla quanto cada agente seguinte gera. Aceite também os nomes por extenso.
 
-**2. Organização das specs.** Em seguida, siga `references/step-03-specs-organization.md` — menu de 6 opções (módulo, caso de uso, endpoint, híbrida, features, customizada), persistido em `.lumen/config.toml`, seção `[specs]`. **Só ative o Archaeologist depois que a organização estiver persistida.**
+**2. Organização das specs.** Em seguida, siga `references/step-03-specs-organization.md` — menu de 6 opções (módulo, caso de uso, endpoint, híbrida, features, customizada), persistido em `.lumen/config.toml`, seção `[specs]`. **Só ative o Analista depois que a organização estiver persistida.**
 
 ### Agentes independentes (quando há o insumo)
 
-- `lumen-data-master` — banco (DDL, migrations, ORM): ERD completo, dicionário de dados, triggers.
-- `lumen-design-system` — CSS/temas: design tokens (cores, tipografia, espaçamento).
-- `lumen-visor` — screenshots: documenta as telas.
+- `lumen-banco` — banco (DDL, migrations, ORM): ERD completo, dicionário de dados, triggers.
+- `lumen-design` — CSS/temas: design tokens (cores, tipografia, espaçamento).
+- `lumen-telas` — screenshots: documenta as telas.
 
-Se o Scout detectar banco, CSS ou telas, **ofereça** o agente correspondente.
+Se o Mapeador detectar banco, CSS ou telas, **ofereça** o agente correspondente.
 
 ### Escala de confiança (sempre)
 
@@ -93,28 +93,28 @@ Assim que o último agente de documentação concluir, **proativamente ofereça 
 > "[Nome], a documentação está completa em `_lumen_docs/` — [N] componentes, [N] regras de negócio (🟢 [N] confirmadas), [N] lacunas 🔴 para validar.
 >
 > Agora dá para evoluir o sistema com segurança, ancorado nessa verdade. Quer construir uma feature? Me diga em uma frase o que você quer e eu conduzo:
-> `lumen-ground → lumen-prd → lumen-techspec → lumen-tasks → lumen-build → lumen-review`
+> `lumen-fundamento → lumen-requisitos → lumen-projeto-tecnico → lumen-tarefas → lumen-construtor → lumen-auditor`
 >
 > Ou digite SÓ DOCUMENTAR se por enquanto era só a documentação que você queria."
 
-Se o usuário descrever uma feature, inicie pelo `lumen-ground` (que fundamenta na documentação recém-gerada). Não force — documentar sozinho é um uso completo e válido.
+Se o usuário descrever uma feature, inicie pelo `lumen-fundamento` (que fundamenta na documentação recém-gerada). Não force — documentar sozinho é um uso completo e válido.
 
 ## Modo Construir (face forward)
 
 Para cada feature, fundamente no que já foi documentado e então construa:
 
 ```
-lumen-ground → lumen-prd → lumen-techspec → lumen-tasks → lumen-build → lumen-review
+lumen-fundamento → lumen-requisitos → lumen-projeto-tecnico → lumen-tarefas → lumen-construtor → lumen-auditor
 ```
 
-- `lumen-ground` roda **primeiro** quando existe `_lumen_docs/`: gera o grounding pack (stack/padrões do sistema + regras 🟢 como restrições) e semeia o `regression-watch.md`.
-- Em projeto novo sem legado (greenfield), pule o `lumen-ground` e comece no `lumen-prd`.
-- **Na criação (`lumen-techspec`), pergunte o stack desejado** (linguagem, backend, frontend, banco, infra, testes). Em projeto documentado, **sugira o que o sistema já usa** como padrão recomendado — o usuário só confirma; mudar exige ADR. Em greenfield, ele decide.
-- **O build é executado pelo motor real (Compozy), sob a marca Lumen.** O `lumen-build` dispara `lumen build <feature>` (= `compozy tasks run`), que escreve o código de verdade. Deixe isso explícito ao usuário antes de disparar. Se o motor não estiver instalado, oriente: `npm i -g @compozy/cli`, depois `lumen setup`.
+- `lumen-fundamento` roda **primeiro** quando existe `_lumen_docs/`: gera o grounding pack (stack/padrões do sistema + regras 🟢 como restrições) e semeia o `regression-watch.md`.
+- Em projeto novo sem legado (greenfield), pule o `lumen-fundamento` e comece no `lumen-requisitos`.
+- **Na criação (`lumen-projeto-tecnico`), pergunte o stack desejado** (linguagem, backend, frontend, banco, infra, testes). Em projeto documentado, **sugira o que o sistema já usa** como padrão recomendado — o usuário só confirma; mudar exige ADR. Em greenfield, ele decide.
+- **O build é executado pelo motor real (Compozy), sob a marca Lumen.** O `lumen-construtor` dispara `lumen build <feature>` (= `compozy tasks run`), que escreve o código de verdade. Deixe isso explícito ao usuário antes de disparar. Se o motor não estiver instalado, oriente: `npm i -g @compozy/cli`, depois `lumen setup`.
 
 ## Modo Verificar (o loop)
 
-Depois que uma feature foi construída, rode `lumen-verify`: ele re-extrai o sistema e compara cada watch item do `regression-watch.md` contra a nova realidade, atribuindo 🟢 (intacto) / 🟡 (mudou) / 🔴 (regrediu). Se houver 🔴, alerte em destaque.
+Depois que uma feature foi construída, rode `lumen-verificador`: ele re-extrai o sistema e compara cada watch item do `regression-watch.md` contra a nova realidade, atribuindo 🟢 (intacto) / 🟡 (mudou) / 🔴 (regrediu). Se houver 🔴, alerte em destaque.
 
 ## Princípios herdados (não viole)
 

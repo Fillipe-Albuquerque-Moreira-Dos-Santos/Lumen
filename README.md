@@ -48,31 +48,31 @@ ORQUESTRADOR
   lumen                  ponto de entrada; conduz documentar → construir → verificar
 
 📖 DOCUMENTAR
-  lumen-scout            mapeia a superfície do sistema
-  lumen-archaeologist    escava módulo a módulo
-  lumen-detective        extrai regras de negócio, ADRs, máquinas de estado
-  lumen-architect        sintetiza C4, ERD, arquitetura
-  lumen-writer           gera as specs como contratos operacionais
-  lumen-reviewer         revisa specs e valida lacunas
-  lumen-data-master      análise de banco: DDL, migrations, ORM, ERD
-  lumen-design-system    extrai design tokens: cores, tipografia, temas
-  lumen-visor            documenta a UI a partir de screenshots
+  lumen-mapeador            mapeia a superfície do sistema
+  lumen-analista    escava módulo a módulo
+  lumen-investigador        extrai regras de negócio, ADRs, máquinas de estado
+  lumen-arquiteto        sintetiza C4, ERD, arquitetura
+  lumen-redator           gera as specs como contratos operacionais
+  lumen-revisor         revisa specs e valida lacunas
+  lumen-banco      análise de banco: DDL, migrations, ORM, ERD
+  lumen-design    extrai design tokens: cores, tipografia, temas
+  lumen-telas            documenta a UI a partir de screenshots
 
 🔁 LOOP
-  lumen-ground           transforma a spec extraída em input fundamentado p/ construir + semeia regressão
-  lumen-verify           re-extrai e confere o regression-watch
+  lumen-fundamento           transforma a spec extraída em input fundamentado p/ construir + semeia regressão
+  lumen-verificador           re-extrai e confere o regression-watch
 
 🔨 CONSTRUIR
-  lumen-prd              ideia → PRD
-  lumen-techspec         pergunta o stack + sugere a arquitetura que o sistema já usa → TechSpec
-  lumen-tasks            TechSpec → tasks no formato do motor
-  lumen-build            dispara o motor de execução real (escreve o código)
-  lumen-review           revisa e corrige via motor
+  lumen-requisitos              ideia → PRD
+  lumen-projeto-tecnico         pergunta o stack + sugere a arquitetura que o sistema já usa → TechSpec
+  lumen-tarefas            TechSpec → tasks no formato do motor
+  lumen-construtor            dispara o motor de execução real (escreve o código)
+  lumen-auditor           revisa e corrige via motor
 ```
 
 17 agentes cobrindo o ciclo inteiro, do entendimento ao código revisado — incluindo análise de banco, design tokens e documentação de telas.
 
-Na criação, o `lumen-techspec` **pergunta como você quer o sistema** (linguagem, backend, frontend, banco, testes) e, em projeto já documentado, **sugere o stack e a arquitetura que o sistema já usa** — para o código novo encaixar sem inventar padrões estranhos.
+Na criação, o `lumen-projeto-tecnico` **pergunta como você quer o sistema** (linguagem, backend, frontend, banco, testes) e, em projeto já documentado, **sugere o stack e a arquitetura que o sistema já usa** — para o código novo encaixar sem inventar padrões estranhos.
 
 ## Motor de execução
 

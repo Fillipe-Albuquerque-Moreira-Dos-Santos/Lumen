@@ -1,6 +1,6 @@
 # Passo 3, Organização das specs
 
-Este passo acontece imediatamente após o usuário escolher o `doc_level` (Essencial / Completo / Detalhado) e antes da invocação do Archaeologist. É o momento em que o Lumen decide e persiste em qual estrutura as specs serão geradas.
+Este passo acontece imediatamente após o usuário escolher o `doc_level` (Essencial / Completo / Detalhado) e antes da invocação do Analista. É o momento em que o Lumen decide e persiste em qual estrutura as specs serão geradas.
 
 ## 1. Decidir se o menu deve ser exibido
 
@@ -13,7 +13,7 @@ A mescla é avaliada por chave: cada chave presente em `config.user.toml` substi
 
 A seção é considerada **decidida** quando, após a mescla, `granularity` está preenchida com um dos valores válidos: `module`, `use-case`, `endpoint`, `hybrid`, `feature`, `custom`.
 
-- **Se decidida:** pule este passo inteiro. Vá direto para a invocação do Archaeologist.
+- **Se decidida:** pule este passo inteiro. Vá direto para a invocação do Analista.
 - **Se não decidida** (seção ausente, ou `granularity` vazia): apresente o menu (passo 2 abaixo).
 
 ### Caso especial, RF-18
@@ -33,21 +33,21 @@ Aguarde resposta afirmativa explícita antes de seguir para o menu. Resposta vaz
 
 Leia `.lumen/context/surface.json` → `organization_suggestion`. Use o campo `granularity` para pré-marcar a opção sugerida e o campo `rationale` para mostrar a razão.
 
-Se o `surface.json` não tiver `organization_suggestion` preenchida (Scout não rodou ou falhou), exiba o menu sem default e peça que o usuário escolha manualmente, conforme EC-01 da spec de organização.
+Se o `surface.json` não tiver `organization_suggestion` preenchida (Mapeador não rodou ou falhou), exiba o menu sem default e peça que o usuário escolha manualmente, conforme EC-01 da spec de organização.
 
 Use exatamente este formato (idioma seguindo `chat_language` do `state.json`, exemplo abaixo em pt-br):
 
 ```
 Como você quer organizar as specs deste projeto?
 
-O Scout analisou o legado e sugere: [tradução da granularity sugerida].
+O Mapeador analisou o legado e sugere: [tradução da granularity sugerida].
 Razão: [organization_suggestion.rationale]
 
   [1] [marcador] Por módulo de código
   [2] [marcador] Por caso de uso
   [3] [marcador] Por endpoint/contrato
   [4] [marcador] Híbrida (módulo na raiz, casos de uso aninhados)
-  [5] [marcador] Por features (Scout lista as features descobertas)
+  [5] [marcador] Por features (Mapeador lista as features descobertas)
   [6] [marcador] Customizada
 
 Escolha (Enter aceita o sugerido):
@@ -95,7 +95,7 @@ Se a pasta de saída tem subpastas que correspondem a uma granularidade diferent
 
 Aguarde resposta afirmativa explícita. Negação aborta sem persistir.
 
-A detecção é heurística e best-effort: comparar nomes de subpastas top-level com os módulos identificados pelo Scout (`module`), com URIs/rotas (`endpoint`), com features (`feature`), etc. Quando a heurística não conseguir decidir com clareza, **não** exiba o aviso (evita falso positivo).
+A detecção é heurística e best-effort: comparar nomes de subpastas top-level com os módulos identificados pelo Mapeador (`module`), com URIs/rotas (`endpoint`), com features (`feature`), etc. Quando a heurística não conseguir decidir com clareza, **não** exiba o aviso (evita falso positivo).
 
 ## 4. Persistir a decisão (RNF-03, atomic write)
 
@@ -120,7 +120,7 @@ Regras:
 
 ## 5. Continuação do fluxo
 
-Após a persistência bem-sucedida, prossiga com a invocação do Archaeologist conforme o `plan.md`. A decisão fica disponível para todos os agentes que escrevem specs.
+Após a persistência bem-sucedida, prossiga com a invocação do Analista conforme o `plan.md`. A decisão fica disponível para todos os agentes que escrevem specs.
 
 ## 6. Reapresentação manual (RF-17)
 
@@ -142,4 +142,4 @@ Os nomes que o Lumen usa para as pastas de feature seguem `doc_language` do `sta
 - [ ] Detectar conflito com estrutura em disco e pedir confirmação
 - [ ] Atomic write em `config.toml`
 - [ ] Preservar `scout_suggestion` em re-execuções com seção parcial
-- [ ] Prosseguir para o Archaeologist
+- [ ] Prosseguir para o Analista

@@ -32,11 +32,11 @@ Ao terminar, ele sugere: *"Quer construir uma feature? Me diga em uma frase."*
 
 Você: *"adicionar cupom de desconto no checkout"*.
 
-- `lumen-ground` gera `.compozy/tasks/cupom-desconto/_lumen-context.md` com o **stack** (Node + Express + PG), os **componentes** do checkout e a regra 🟢 "pedido só é faturado se pago" como restrição.
-- `lumen-techspec` **pergunta o stack** — e como o sistema já é Node + Express + PG, **sugere manter**. Você confirma. Desenha a arquitetura no mesmo padrão de camadas.
-- `lumen-tasks` quebra em `task_01.md`, `task_02.md`… no formato do motor.
+- `lumen-fundamento` gera `.compozy/tasks/cupom-desconto/_lumen-context.md` com o **stack** (Node + Express + PG), os **componentes** do checkout e a regra 🟢 "pedido só é faturado se pago" como restrição.
+- `lumen-projeto-tecnico` **pergunta o stack** — e como o sistema já é Node + Express + PG, **sugere manter**. Você confirma. Desenha a arquitetura no mesmo padrão de camadas.
+- `lumen-tarefas` quebra em `task_01.md`, `task_02.md`… no formato do motor.
 - `lumen build cupom-desconto` → o motor escreve o código de verdade.
-- `lumen-review` revisa e corrige.
+- `lumen-auditor` revisa e corrige.
 
 ## 4. Verificar
 
@@ -44,7 +44,7 @@ Você: *"adicionar cupom de desconto no checkout"*.
 /lumen   (modo Verificar)
 ```
 
-`lumen-verify` re-extrai e confere o `regression-watch`:
+`lumen-verificador` re-extrai e confere o `regression-watch`:
 
 ```
 🟢 W001  "pedido só é faturado se pago"  — intacto

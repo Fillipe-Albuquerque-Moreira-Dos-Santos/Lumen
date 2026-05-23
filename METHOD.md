@@ -16,27 +16,27 @@ Você roda `/lumen` num projeto legado. O modo Documentar lê o código e produz
 
 Este modo **nunca toca no seu código**. Só lê e escreve em `.lumen/` e `_lumen_docs/`.
 
-Agentes: `lumen-scout → lumen-archaeologist → lumen-detective → lumen-architect → lumen-writer → lumen-reviewer`.
+Agentes: `lumen-mapeador → lumen-analista → lumen-investigador → lumen-arquiteto → lumen-redator → lumen-revisor`.
 
 ---
 
 ## 2. Construir — fazer
 
-Para uma feature, o Lumen primeiro **fundamenta** (`lumen-ground`): lê de `_lumen_docs/` o que é relevante e produz um grounding pack onde as regras 🟢 viram **restrições que o build não pode quebrar**. Também semeia o `regression-watch.md`.
+Para uma feature, o Lumen primeiro **fundamenta** (`lumen-fundamento`): lê de `_lumen_docs/` o que é relevante e produz um grounding pack onde as regras 🟢 viram **restrições que o build não pode quebrar**. Também semeia o `regression-watch.md`.
 
 Depois constrói, fundamentado:
 
-`lumen-prd → lumen-techspec → lumen-tasks → lumen-build → lumen-review`
+`lumen-requisitos → lumen-projeto-tecnico → lumen-tarefas → lumen-construtor → lumen-auditor`
 
-Só o `lumen-build` **escreve código de verdade** — e isso é dito explícito ao usuário antes de começar.
+Só o `lumen-construtor` **escreve código de verdade** — e isso é dito explícito ao usuário antes de começar.
 
-Em projeto novo (greenfield), pula o `lumen-ground` e começa no `lumen-prd`.
+Em projeto novo (greenfield), pula o `lumen-fundamento` e começa no `lumen-requisitos`.
 
 ---
 
 ## 3. Verificar — fechar o loop
 
-Depois do build, `lumen-verify` re-extrai o sistema e compara cada watch item do `regression-watch.md` contra a nova realidade:
+Depois do build, `lumen-verificador` re-extrai o sistema e compara cada watch item do `regression-watch.md` contra a nova realidade:
 
 - 🟢 → a regra continua verdadeira.
 - 🟡 → mudou de forma, revisar.

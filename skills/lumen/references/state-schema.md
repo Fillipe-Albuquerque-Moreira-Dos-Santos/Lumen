@@ -18,7 +18,7 @@ Este arquivo persiste o estado completo da análise entre sessões. O Lumen lê 
   "completed": ["reconhecimento"],
   "pending": ["escavacao", "interpretacao", "geracao", "revisao"],
   "engines": ["claude-code"],
-  "agents": ["lumen", "lumen-scout", "lumen-archaeologist"],
+  "agents": ["lumen", "lumen-mapeador", "lumen-analista"],
   "checkpoints": {
     "scout": {
       "completed_at": "2026-04-26T10:00:00Z",
@@ -57,7 +57,7 @@ Este arquivo persiste o estado completo da análise entre sessões. O Lumen lê 
 | `chat_language` | string | Idioma das interações (ex: pt-br, en-us) |
 | `doc_language` | string | Idioma das specs geradas (ex: Português, English) |
 | `answer_mode` | string | Como o usuário responde às lacunas: `chat` ou `file` |
-| `doc_level` | string \| null | Volume de documentação gerada: `essencial`, `completo` ou `detalhado`. Começa `null` — obrigatório preencher via escolha do usuário após o Scout. |
+| `doc_level` | string \| null | Volume de documentação gerada: `essencial`, `completo` ou `detalhado`. Começa `null` — obrigatório preencher via escolha do usuário após o Mapeador. |
 | `output_folder` | string | Pasta de saída das specs (padrão: `_lumen_docs`) |
 | `phase` | string \| null | Fase atual. `null` = não iniciado |
 | `completed` | string[] | Fases concluídas |
@@ -77,4 +77,4 @@ Nunca remova campos existentes. Apenas adicione ou atualize.
 
 ## Onde NÃO escrever
 
-A decisão de organização das specs (granularidade, pastas customizadas, sugestão original do Scout, timestamp da escolha) **não** vai no `state.json`. Ela é persistida em `.lumen/config.toml`, seção `[specs]`, conforme `references/step-03-specs-organization.md`. O `state.json` é estado runtime, o `config.toml` é decisão de longo prazo.
+A decisão de organização das specs (granularidade, pastas customizadas, sugestão original do Mapeador, timestamp da escolha) **não** vai no `state.json`. Ela é persistida em `.lumen/config.toml`, seção `[specs]`, conforme `references/step-03-specs-organization.md`. O `state.json` é estado runtime, o `config.toml` é decisão de longo prazo.

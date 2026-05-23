@@ -12,32 +12,32 @@
 
 | Agente | Papel |
 |--------|-------|
-| `lumen-scout` | Mapeia a superfície do sistema (estrutura, linguagens, dependências). |
-| `lumen-archaeologist` | Escava módulo a módulo: algoritmos, fluxos, estruturas de dados. |
-| `lumen-detective` | Extrai regras de negócio implícitas, ADRs retroativas, máquinas de estado. |
-| `lumen-architect` | Sintetiza C4, ERD completo, mapa de integração, arquitetura. |
-| `lumen-writer` | Gera as specs como contratos operacionais rastreáveis. |
-| `lumen-reviewer` | Revisa specs, acha contradições, valida lacunas. |
-| `lumen-data-master` | Análise completa de banco: DDL, migrations, ORM, ERD, triggers. |
-| `lumen-design-system` | Extrai design tokens: cores, tipografia, espaçamento, temas. |
-| `lumen-visor` | Documenta a interface a partir de screenshots. |
+| `lumen-mapeador` | Mapeia a superfície do sistema (estrutura, linguagens, dependências). |
+| `lumen-analista` | Escava módulo a módulo: algoritmos, fluxos, estruturas de dados. |
+| `lumen-investigador` | Extrai regras de negócio implícitas, ADRs retroativas, máquinas de estado. |
+| `lumen-arquiteto` | Sintetiza C4, ERD completo, mapa de integração, arquitetura. |
+| `lumen-redator` | Gera as specs como contratos operacionais rastreáveis. |
+| `lumen-revisor` | Revisa specs, acha contradições, valida lacunas. |
+| `lumen-banco` | Análise completa de banco: DDL, migrations, ORM, ERD, triggers. |
+| `lumen-design` | Extrai design tokens: cores, tipografia, espaçamento, temas. |
+| `lumen-telas` | Documenta a interface a partir de screenshots. |
 
 ## 🔁 Loop
 
 | Agente | Papel |
 |--------|-------|
-| `lumen-ground` | Transforma a verdade extraída em input fundamentado para o build (stack, padrões, regras 🟢) e semeia o `regression-watch`. |
-| `lumen-verify` | Re-extrai e confere cada watch item (🟢/🟡/🔴) após o build. |
+| `lumen-fundamento` | Transforma a verdade extraída em input fundamentado para o build (stack, padrões, regras 🟢) e semeia o `regression-watch`. |
+| `lumen-verificador` | Re-extrai e confere cada watch item (🟢/🟡/🔴) após o build. |
 
 ## 🔨 Construir
 
 | Agente | Papel |
 |--------|-------|
-| `lumen-prd` | Ideia → PRD (o quê e o porquê). |
-| `lumen-techspec` | Pergunta o stack e sugere a arquitetura existente → TechSpec (o como). |
-| `lumen-tasks` | TechSpec → tasks no formato do motor (`.compozy/tasks/`). |
-| `lumen-build` | Dispara o motor real (`compozy tasks run`) — escreve o código. |
-| `lumen-review` | Revisa e corrige via review do motor. |
+| `lumen-requisitos` | Ideia → PRD (o quê e o porquê). |
+| `lumen-projeto-tecnico` | Pergunta o stack e sugere a arquitetura existente → TechSpec (o como). |
+| `lumen-tarefas` | TechSpec → tasks no formato do motor (`.compozy/tasks/`). |
+| `lumen-construtor` | Dispara o motor real (`compozy tasks run`) — escreve o código. |
+| `lumen-auditor` | Revisa e corrige via review do motor. |
 
 ## Escala de confiança
 

@@ -7,13 +7,13 @@ Para a **execução** do build, o Lumen usa o **Compozy** como motor: execução
 ## Como funciona
 
 ```
-lumen-techspec / lumen-tasks   →   .compozy/tasks/<feature>/   →   lumen build
+lumen-projeto-tecnico / lumen-tarefas   →   .compozy/tasks/<feature>/   →   lumen build
    (autoram no formato do motor)        (o seam)                    (= compozy tasks run)
 ```
 
-- `lumen-tasks` grava as tasks em `.compozy/tasks/<feature>/` no formato v2 que o motor executa (validado por `compozy tasks validate`).
+- `lumen-tarefas` grava as tasks em `.compozy/tasks/<feature>/` no formato v2 que o motor executa (validado por `compozy tasks validate`).
 - `lumen build <feature>` aciona `compozy tasks run` por baixo. **Você nunca digita `compozy` direto** — a experiência é Lumen.
-- `lumen-review` usa o review do motor (`compozy reviews`).
+- `lumen-auditor` usa o review do motor (`compozy reviews`).
 
 ## Instalação do motor
 
