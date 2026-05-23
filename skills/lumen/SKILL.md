@@ -174,6 +174,8 @@ Nada além disso é perguntado — o resto é inferido da documentação.
 fundamento → requisitos → projeto-tecnico → tarefas → [rodar: lumen build <feature>] → auditor → [/lumen: verificar]
 ```
 
+> 🛑 **Regra de ouro do build (não viole):** o agente **AUTORA** (transforma docs em tarefas); quem **ESCREVE O CÓDIGO é o motor**, sempre via `lumen build <feature>`. **Nunca** implemente o código você mesmo no modo Construir — mesmo sendo capaz. Seu papel é gerar as tarefas e **disparar o motor**; é ele que executa (concorrente, com retries). Se você codar à mão, perde a execução real do motor, os retries e a rastreabilidade.
+
 **Paralelo, com vários subagentes ao mesmo tempo (não esqueça):**
 - **Autoria:** para escopo grande com várias unidades/módulos independentes, autore **em subagentes paralelos** (um por unidade), cada um no seu próprio contexto — `requisitos`/`projeto-tecnico`/`tarefas` rodam lado a lado onde as unidades não dependem entre si.
 - **Execução:** o `lumen build` executa **as tarefas concorrentemente** (o motor roda várias ao mesmo tempo, com retries) — escopo grande = muitas tarefas tocadas em paralelo, como um workflow completo.
