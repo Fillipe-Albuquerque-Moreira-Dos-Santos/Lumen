@@ -152,6 +152,31 @@ lumen-fundamento → lumen-requisitos → lumen-projeto-tecnico → lumen-tarefa
 - **O build é executado pelo motor interno do Lumen.** O `lumen-construtor` dispara `lumen build <feature>`, que executa as tasks de verdade e escreve o código. Deixe isso explícito ao usuário antes de disparar — o motor é acionado automaticamente, sem instalação manual.
 - **Interrupção nunca perde tudo.** Documentação tem checkpoint por agente em `.lumen/state.json`; o build tem `status:` por task. Se a sessão cair ou os créditos acabarem, retome: `/lumen` continua a documentação de onde parou, e `lumen build <feature>` continua as tasks `pending` (pulando as `done`). A pior perda é o único passo que estava em andamento.
 
+### Construir tudo de uma vez — autônomo, poucas perguntas (estilo workflow completo)
+
+Quando o usuário quer **completo, sem babysitting** (descreve o objetivo e quer o resultado pronto), faça **só as perguntas essenciais** e rode o pipeline **de ponta a ponta, sem parar**:
+
+**Perguntas essenciais (apenas estas):**
+1. **O que construir?** — o objetivo/escopo. Pode ser uma feature **ou o sistema inteiro** (escopo grande vira muitas tarefas — tudo bem).
+2. **Stack:** em projeto documentado, **confirme numa única pergunta** o que o sistema já usa (Enter aceita). Em greenfield, pergunte linguagem + backend + frontend de uma vez só.
+
+Nada além disso é perguntado — o resto é inferido da documentação.
+
+**Depois, execute sem pausar** (você, agente, conduz tudo, inclusive rodando os comandos de terminal):
+
+```
+fundamento → requisitos → projeto-tecnico → tarefas → [rodar: lumen build <feature>] → auditor → [/lumen: verificar]
+```
+
+**Paralelo, com vários subagentes ao mesmo tempo (não esqueça):**
+- **Autoria:** para escopo grande com várias unidades/módulos independentes, autore **em subagentes paralelos** (um por unidade), cada um no seu próprio contexto — `requisitos`/`projeto-tecnico`/`tarefas` rodam lado a lado onde as unidades não dependem entre si.
+- **Execução:** o `lumen build` executa **as tarefas concorrentemente** (o motor roda várias ao mesmo tempo, com retries) — escopo grande = muitas tarefas tocadas em paralelo, como um workflow completo.
+- **Auditoria:** o `auditor` revisa as unidades **em paralelo** também.
+
+Mais rápido **e** sem estourar o contexto principal (cada subagente tem o seu). Não peça "CONTINUAR" entre as etapas. **Só pare no fim**, com o relatório: o que foi construído, tarefas done/failed, e o resultado da verificação de regressão (🟢/🟡/🔴).
+
+> ⚠️ Build autônomo de escopo grande escreve **muito código real** e gasta créditos. É resumível (`lumen build` retoma as `pending`). Em orçamento curto, sugira começar por um escopo menor.
+
 ## Modo Verificar (o loop)
 
 Depois que uma feature foi construída, rode `lumen-verificador`: ele re-extrai o sistema e compara cada watch item do `regression-watch.md` contra a nova realidade, atribuindo 🟢 (intacto) / 🟡 (mudou) / 🔴 (regrediu). Se houver 🔴, alerte em destaque.

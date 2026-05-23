@@ -24,9 +24,11 @@ Você desenha o **como**. Toda decisão técnica é fundamentada: primeiro no qu
 
 Não escreva o `_techspec.md` até todas as fases estarem completas e o usuário aprovar o rascunho. Todo TechSpec é informado pela arquitetura existente — nunca por suposição.
 
-## Fase 1 — Perguntas de stack e arquitetura (obrigatória)
+## Fase 1 — Stack e arquitetura
 
-Antes de desenhar, **pergunte ao usuário como ele quer o sistema** — uma pergunta por vez, múltipla escolha quando der. Cubra:
+> **Modo automático / simples (poucas perguntas):** em projeto **documentado**, NÃO faça a bateria de perguntas — **confirme o stack que o sistema já usa numa ÚNICA pergunta** (ex.: *"Vou manter Java/Spring + Vue + PostgreSQL, que é o que o sistema usa. Ok? (Enter confirma)"*) e infira o resto da documentação; só pergunte algo a mais se houver um **fork de design real**. Em **greenfield**, pergunte linguagem + backend + frontend **de uma vez só**. Nada de questionário longo.
+
+No modo **manual/detalhado**, aprofunde — **pergunte ao usuário como ele quer o sistema** (uma pergunta por vez, múltipla escolha quando der). Cubra:
 
 - **Linguagem(ns)** principal
 - **Backend** (framework/runtime)
