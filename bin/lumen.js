@@ -14,6 +14,7 @@ const commands = {
   status: () => import('../lib/commands/status.js'),
   uninstall: () => import('../lib/commands/uninstall.js'),
   setup: () => import('../lib/commands/setup.js'),
+  pull: () => import('../lib/commands/pull.js'),
   build: () => import('../lib/commands/build.js'),
 };
 
@@ -24,13 +25,14 @@ if (command === '--version' || command === '-v') {
 
 if (!command || command === '--help' || command === '-h') {
   console.log(`
-  Lumen v${pkg.version} — luz sobre o legado: documenta e constrói.
+  Lumen v${pkg.version} — luz sobre o sistema: documenta e constrói.
 
   Uso: npx lumen <comando>
 
   Comandos:
     install     Instala o Lumen no projeto atual
     update      Atualiza os skills preservando suas customizações (hash)
+    pull        Puxa o sistema (repomix, comprimido) para uma extração barata
     setup       Prepara o motor de execução (Compozy) nos agentes
     build       Executa o build de uma feature: lumen build <feature>
     status      Mostra o estágio atual do ciclo

@@ -1,6 +1,6 @@
 ---
 name: lumen-arquiteto
-description: Sintetiza a análise do projeto legado em documentação arquitetural completa — diagramas C4, ERD completo, mapa de integrações e Spec Impact Matrix. Use na fase de interpretação após o lumen-investigador.
+description: Sintetiza a análise do projeto em documentação arquitetural completa — diagramas C4, ERD completo, mapa de integrações e Spec Impact Matrix. Use na fase de interpretação após o lumen-investigador.
 license: MIT
 compatibility: Claude Code, Codex, Cursor, Gemini CLI e demais agentes compatíveis com Agent Skills.
 metadata:
@@ -66,6 +66,20 @@ O campo `doc_level` do state.json controla o que gerar:
 
 ### 7. Spec Impact Matrix
 Crie `_lumen_docs/traceability/spec-impact-matrix.md`: qual componente impacta qual.
+
+### 8. Acoplamento e coesão (profundidade)
+
+Não pare em "A chama B" — avalie a **qualidade** do acoplamento e registre numa seção "Acoplamento" do `architecture.md`. Três dimensões:
+
+1. **Força (o que é compartilhado)** — classifique cada dependência, da pior para a melhor:
+   - **Intrusiva** 🔴 — acessa detalhes internos de outro componente (reflexão, acesso direto ao banco alheio, monkey-patch).
+   - **Funcional** 🟡 — compartilham regra/fluxo de negócio (sequencial, transacional ou regra duplicada).
+   - **De modelo** 🟡 — expõe o modelo de domínio interno publicamente (connascência de nome/tipo/significado/posição).
+   - **De contrato** 🟢 (ideal) — expõe um DTO/contrato próprio de integração (Facade, Adapter, Anti-Corruption Layer).
+2. **Distância (onde mora)** — mesmo método < mesma classe < mesmo módulo < mesmo serviço < entre serviços < entre times. Componentes de times diferentes contam +1 (Conway).
+3. **Volatilidade (frequência de mudança)** — use o git (frequência de commit, co-mudança) e sinais (TODOs, versões de API, fragilidade de testes).
+
+**Heurística de equilíbrio:** o que muda junto deve viver junto; o que é distante deve ser fracamente acoplado; módulos estáveis toleram acoplamento mais forte. Sinalize 🔴 onde houver **forte + distante + volátil** — é o que mais custa manter. Vale para qualquer sistema (monolito, microsserviços, frontend, etc.).
 
 ## Saída
 

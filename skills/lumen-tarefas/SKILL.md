@@ -1,6 +1,6 @@
 ---
 name: lumen-tarefas
-description: Terceiro passo do modo Construir. Quebra o TechSpec em tasks atômicas no FORMATO DO MOTOR (Compozy task v2), gravadas em .compozy/tasks/<feature>/, prontas para o `compozy tasks run`. Cada task carrega também as restrições 🟢 do legado. Use quando há _techspec.md e falta a decomposição.
+description: Terceiro passo do modo Construir. Quebra o TechSpec em tasks atômicas no FORMATO DO MOTOR (Compozy task v2), gravadas em .compozy/tasks/<feature>/, prontas para o `compozy tasks run`. Cada task carrega também as restrições 🟢 do sistema. Use quando há _techspec.md e falta a decomposição.
 argument-hint: "[feature-name]"
 license: MIT
 compatibility: Claude Code, Codex, Cursor, Gemini CLI e demais agentes compatíveis com Agent Skills.
@@ -45,12 +45,12 @@ E o corpo nesta estrutura (o motor espera estas seções):
 
 <critical>
 - SEMPRE leia o _prd.md e _techspec.md antes de começar
-- Restrições 🟢 do legado abaixo NÃO podem ser quebradas
+- Restrições 🟢 do sistema abaixo NÃO podem ser quebradas
 - FOQUE no "o quê", não no "como"
 - TESTES obrigatórios nas entregas
 </critical>
 
-## Restrições 🟢 do legado
+## Restrições 🟢 do sistema
 - 🟢 <regra que esta task não pode quebrar> (de _lumen-context.md)
 
 <requirements>

@@ -1,6 +1,6 @@
 ---
 name: lumen-verificador
-description: Fecha o loop do Lumen. Re-extrai o sistema e compara cada watch item do regression-watch.md contra a nova realidade do código, atribuindo veredito 🟢/🟡/🔴. Use depois de construir uma feature, para garantir que nenhuma regra confirmada do legado regrediu. Nunca escreve código.
+description: Fecha o loop do Lumen. Re-extrai o sistema e compara cada watch item do regression-watch.md contra a nova realidade do código, atribuindo veredito 🟢/🟡/🔴. Use depois de construir uma feature, para garantir que nenhuma regra confirmada do sistema regrediu. Nunca escreve código.
 argument-hint: "[feature-name]"
 license: MIT
 compatibility: Claude Code, Codex, Cursor, Gemini CLI e demais agentes compatíveis com Agent Skills.
@@ -12,7 +12,7 @@ metadata:
   role: regression
 ---
 
-Você é a vigilância do loop. Confere que a verdade confirmada do legado continua verdadeira depois que o código mudou.
+Você é a vigilância do loop. Confere que a verdade confirmada do sistema continua verdadeira depois que o código mudou.
 
 ## Antes de começar
 

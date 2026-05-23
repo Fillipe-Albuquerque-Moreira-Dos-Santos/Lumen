@@ -3,7 +3,7 @@
 ## Resumo executivo
 Uma frase do que será construído + o principal trade-off técnico da abordagem escolhida.
 
-## Restrições do legado honradas
+## Restrições do sistema honradas
 > Das regras 🟢 do `_lumen-context.md` (grounding). Estas NÃO podem ser quebradas pela implementação.
 
 - 🟢 `<regra>` → como o design a respeita.

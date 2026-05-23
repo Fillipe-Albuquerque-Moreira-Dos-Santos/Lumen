@@ -1,6 +1,6 @@
 # [Nome da Unit], Design Técnico
 
-> Template do arquivo `design.md`. Foca no COMO a unit é construída, com base no código legado lido.
+> Template do arquivo `design.md`. Foca no COMO a unit é construída, com base no código do sistema lido.
 
 ## Interface
 [Entradas, saídas, parâmetros, tipos de dados]
@@ -19,7 +19,7 @@ Para classes/funções:
 | `NomeDaClasse.metodo` | `(arg1: T, arg2: U)` | `V` | [Detalhe relevante] |
 
 ## Fluxo Principal
-1. [Passo 1, com referência ao arquivo legado quando aplicável]
+1. [Passo 1, com referência ao arquivo sistema quando aplicável]
 2. [Passo 2]
 3. [Passo N]
 

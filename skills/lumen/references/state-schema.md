@@ -52,7 +52,7 @@ Este arquivo persiste o estado completo da análise entre sessões. O Lumen lê 
 | Campo | Tipo | Descrição |
 |-------|------|-----------|
 | `version` | string | Versão do Lumen instalada |
-| `project` | string | Nome do projeto legado |
+| `project` | string | Nome do projeto |
 | `user_name` | string | Nome do usuário (para interações) |
 | `chat_language` | string | Idioma das interações (ex: pt-br, en-us) |
 | `doc_language` | string | Idioma das specs geradas (ex: Português, English) |

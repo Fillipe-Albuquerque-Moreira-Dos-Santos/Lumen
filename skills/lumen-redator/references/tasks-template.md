@@ -1,6 +1,6 @@
 # [Nome da Unit], Tarefas de Implementação
 
-> Template do arquivo `tasks.md`. Foca em uma sequência de tarefas executáveis para reimplementar a unit a partir do legado, com rastreabilidade ao código original.
+> Template do arquivo `tasks.md`. Foca em uma sequência de tarefas executáveis para reimplementar a unit a partir do sistema, com rastreabilidade ao código original.
 
 ## Pré-requisitos
 - [ ] Dependências da unit listadas em `design.md` estão disponíveis
@@ -9,15 +9,15 @@
 
 ## Tarefas
 
-> Cada tarefa referencia o arquivo do legado de onde o comportamento foi extraído.
+> Cada tarefa referencia o arquivo do sistema de onde o comportamento foi extraído.
 
 - [ ] T-01, [Descrição da tarefa]
-  - Origem no legado: `caminho/arquivo.ext:linha`
+  - Origem no sistema: `caminho/arquivo.ext:linha`
   - Critério de pronto: [como validar]
   - Confiança: 🟢 / 🟡 / 🔴
 
 - [ ] T-02, [Descrição da tarefa]
-  - Origem no legado: `caminho/arquivo.ext:linha`
+  - Origem no sistema: `caminho/arquivo.ext:linha`
   - Critério de pronto: [como validar]
   - Confiança: 🟢 / 🟡 / 🔴
 
@@ -29,7 +29,7 @@
 
 ## Tarefas de Migração de Dados (se aplicável)
 
-- [ ] TM-01, [Migração de dados X, com referência ao schema legado]
+- [ ] TM-01, [Migração de dados X, com referência ao schema sistema]
 
 ## Ordem Sugerida
 1. [Quais tarefas devem ser feitas primeiro e por quê]

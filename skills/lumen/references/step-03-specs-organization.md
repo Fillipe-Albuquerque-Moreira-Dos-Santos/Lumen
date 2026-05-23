@@ -40,7 +40,7 @@ Use exatamente este formato (idioma seguindo `chat_language` do `state.json`, ex
 ```
 Como você quer organizar as specs deste projeto?
 
-O Mapeador analisou o legado e sugere: [tradução da granularity sugerida].
+O Mapeador analisou o sistema e sugere: [tradução da granularity sugerida].
 Razão: [organization_suggestion.rationale]
 
   [1] [marcador] Por módulo de código

@@ -1,6 +1,6 @@
 <div align="center">
   <h1>✦ Lumen</h1>
-  <p><strong>Luz sobre o legado: documenta o que já existe e constrói o que vem a seguir.</strong></p>
+  <p><strong>Luz sobre o sistema: documenta o que já existe e constrói o que vem a seguir.</strong></p>
   <p><em>Um único agente para todo o ciclo — entender o sistema, evoluí-lo, e garantir que nada se quebrou.</em></p>
   <p>
     <img src="https://img.shields.io/badge/license-MIT-f5c518" alt="MIT">
@@ -37,7 +37,7 @@ Lumen é **um só** — uma única instalação, uma única marca, um único con
 
 ## Por que o Lumen existe
 
-Sistemas reais carregam anos de conhecimento preso no código: regras de negócio implícitas, decisões de arquitetura nunca escritas, lógica crítica que ninguém quer tocar. Agentes de IA são poderosos para evoluir software, mas precisam de especificação para agir com segurança — e no código legado essa spec não existe.
+Todo sistema — legado, moderno ou em desenvolvimento — carrega conhecimento preso no código: regras de negócio implícitas, decisões de arquitetura nunca escritas, lógica crítica que ninguém quer tocar. Agentes de IA são poderosos para evoluir software, mas precisam de especificação para agir com segurança — e essa spec confiável quase nunca existe. Lumen puxa **qualquer** sistema (qualquer stack, qualquer tipo) e transforma a realidade dele em specs rastreáveis.
 
 Documentar e codar costumam viver separados: a documentação envelhece, e o código novo quebra regras que ninguém lembrava. **Lumen une os dois num ciclo só.** Primeiro ele extrai a verdade do sistema (com cada afirmação rastreável até o código). Depois constrói cada feature ancorada nessa verdade. E, por fim, re-extrai para confirmar que as regras confirmadas continuam de pé. A documentação não envelhece porque o loop a renova; o código não regride porque o contrato de regressão o vigia.
 
@@ -90,9 +90,12 @@ lumen setup                   # prepara o motor nos seus agentes
 ```bash
 npx lumen install            # 1. instala os agentes Lumen
 lumen setup                  # 2. prepara o motor de execução
-/lumen                       # 3. documenta → sugere codar → constrói → verifica
+lumen pull                   # 3. (opcional) puxa o sistema comprimido p/ extração barata
+/lumen                       # 4. documenta → sugere codar → constrói → verifica
 lumen build <feature>        #    (o build roda no motor real, sob a marca Lumen)
 ```
+
+Funciona para **qualquer sistema** — legado, moderno, em desenvolvimento; qualquer stack ou tipo (API, web, mobile, CLI, dados, infra).
 
 ## Status
 

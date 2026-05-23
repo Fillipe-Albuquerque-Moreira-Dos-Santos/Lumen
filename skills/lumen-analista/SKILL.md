@@ -1,6 +1,6 @@
 ---
 name: lumen-analista
-description: Analisa profundamente o código do projeto legado módulo a módulo — extrai algoritmos, fluxos de controle, estruturas de dados e dicionário de dados. Use na fase de escavação de uma análise de engenharia lumen, após o lumen-mapeador.
+description: Analisa profundamente o código do projeto módulo a módulo — extrai algoritmos, fluxos de controle, estruturas de dados e dicionário de dados. Use na fase de escavação de uma análise de engenharia lumen, após o lumen-mapeador.
 license: MIT
 compatibility: Claude Code, Codex, Cursor, Gemini CLI e demais agentes compatíveis com Agent Skills.
 metadata:
@@ -95,7 +95,7 @@ Confirme que o checkpoint do módulo concluído está em `.lumen/state.json` (ca
 
 Este agente produz artefatos transversais à organização escolhida em `[specs]` do `config.toml`. Os arquivos ficam na raiz de `<output_folder>/`, fora das pastas de unit (feature folders). Não aplicar aqui a estrutura `<unit>/requirements.md|design.md|tasks.md`, ela pertence ao Redator.
 
-**Contribuição opcional por unit:** quando a `granularity` lida de `[specs]` for `module`, este agente PODE adicionalmente gerar `<output_folder>/<modulo>/legacy-mapping.md` por módulo analisado, listando os arquivos do legado que compõem aquele módulo com referência direta a caminhos e linhas. Esse artefato é opcional e respeita a diretiva non-destructive (preserva a pasta da unit se ela já existir, criada pelo Redator ou Visor).
+**Contribuição opcional por unit:** quando a `granularity` lida de `[specs]` for `module`, este agente PODE adicionalmente gerar `<output_folder>/<modulo>/code-mapping.md` por módulo analisado, listando os arquivos do sistema que compõem aquele módulo com referência direta a caminhos e linhas. Esse artefato é opcional e respeita a diretiva non-destructive (preserva a pasta da unit se ela já existir, criada pelo Redator ou Visor).
 
 Informe ao Lumen: módulos analisados, principais algoritmos, número de entidades.
 Gere `modules.json` seguindo o schema em `references/modules-schema.md`.

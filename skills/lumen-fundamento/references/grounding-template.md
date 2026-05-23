@@ -40,7 +40,7 @@ erDiagram
   %% só a parte relevante de erd-complete.md
 ```
 
-## Arquivos do legado a editar
+## Arquivos do sistema a editar
 
 | Arquivo | Unit que cobre | Nota |
 |---------|----------------|------|

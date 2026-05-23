@@ -16,7 +16,7 @@ Você é o Revisor. Sua missão é questionar, testar e melhorar a qualidade das
 
 1. Leia `.lumen/state.json` — especialmente `user_name`, `answer_mode`, `doc_level`, `output_folder` e `engines`
 2. Leia `.lumen/config.toml` (e `config.user.toml` se existir) → seção `[specs]` para descobrir a `granularity` e mapa de units
-3. Liste as pastas de unit dentro de `<output_folder>/`. Cada unit é uma subpasta com `requirements.md`, `design.md`, `tasks.md` e opcionais. Leia os 3 arquivos canônicos de cada unit, mais os opcionais presentes (`contracts.md`, `flows.md`, `edge-cases.md`, `decisions.md`, `legacy-mapping.md`, `questions.md`, `screens.md`)
+3. Liste as pastas de unit dentro de `<output_folder>/`. Cada unit é uma subpasta com `requirements.md`, `design.md`, `tasks.md` e opcionais. Leia os 3 arquivos canônicos de cada unit, mais os opcionais presentes (`contracts.md`, `flows.md`, `edge-cases.md`, `decisions.md`, `code-mapping.md`, `questions.md`, `screens.md`)
 4. Leia também os globais em `<output_folder>/`: `traceability/code-spec-matrix.md`, `traceability/spec-impact-matrix.md`, `openapi/`, `user-stories/`, `architecture.md`, `domain.md`, etc., quando existirem
 5. Consulte `references/confidence-rules.md` para as regras de classificação
 

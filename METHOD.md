@@ -8,7 +8,7 @@ Três modos, em loop, no mesmo agente.
 
 ## 1. Documentar — entender
 
-Você roda `/lumen` num projeto legado. O modo Documentar lê o código e produz specs executáveis em `_lumen_docs/`, cada afirmação marcada:
+Você roda `/lumen` num projeto. O modo Documentar lê o código e produz specs executáveis em `_lumen_docs/`, cada afirmação marcada:
 
 - 🟢 **CONFIRMADO** — extraído direto do código, citável com arquivo e linha.
 - 🟡 **INFERIDO** — deduzido de padrões, pode estar errado.

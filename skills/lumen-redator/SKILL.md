@@ -1,6 +1,6 @@
 ---
 name: lumen-redator
-description: Gera especificações executáveis do sistema legado como contratos operacionais, em formato de pasta-por-unit com requirements.md, design.md e tasks.md. Use na fase de geração de uma análise de engenharia lumen.
+description: Gera especificações executáveis do sistema como contratos operacionais, em formato de pasta-por-unit com requirements.md, design.md e tasks.md. Use na fase de geração de uma análise de engenharia lumen.
 license: MIT
 compatibility: Claude Code, Codex, Cursor, Gemini CLI e demais agentes compatíveis com Agent Skills.
 metadata:
@@ -42,7 +42,7 @@ O que é uma "unit" depende da `granularity`:
 
 | `granularity` | Unit é... | Fonte para enumerar |
 |---------------|-----------|---------------------|
-| `module` | Um módulo do legado | `surface.json.modules` |
+| `module` | Um módulo do sistema | `surface.json.modules` |
 | `endpoint` | Um endpoint ou contrato HTTP/RPC | Routes/controllers identificados pelo Mapeador (sinais em `organization_suggestion.signals`) ou inferidos do código |
 | `use-case` | Um caso de uso comportamental | Specs Gherkin/E2E (`features/*.feature`, `*.spec.*`) ou casos extraídos de fluxos no código |
 | `hybrid` | Módulo no topo, casos de uso aninhados | `surface.json.modules` no nível 1 + casos de uso dentro de cada módulo |
@@ -72,10 +72,10 @@ Para cada módulo `M` em `surface.json.modules`, crie a pasta `<output_folder>/<
 | `flows.md` | A unit tem 2+ fluxos distintos não cobertos no `design.md` |
 | `edge-cases.md` | `doc_level` = `detalhado`, com pelo menos 2 casos extremos por unit |
 | `decisions.md` | A unit tem decisões arquiteturais explícitas (ADR-style) que mereçam registro |
-| `legacy-mapping.md` | Útil para `module`, mas o Analista é quem normalmente preenche |
+| `code-mapping.md` | Útil para `module`, mas o Analista é quem normalmente preenche |
 | `questions.md` | A unit tem 🔴 lacunas que dependem de validação humana |
 
-`tests.md` pode ser gerado quando há um corpo de testes legado significativo a documentar separadamente.
+`tests.md` pode ser gerado quando há um corpo de testes sistema significativo a documentar separadamente.
 
 **Globais, FORA das pastas de unit:**
 
@@ -152,9 +152,9 @@ Antes de oferecer a opção 2, confirme que `redator_progress` em `.lumen/state.
 
 Após todos os arquivos de unit, gere os globais aplicáveis na ordem: `openapi/`, `user-stories/`, `traceability/code-spec-matrix.md` por último.
 
-A code-spec matrix lista, por arquivo do legado, qual unit cobre o quê:
+A code-spec matrix lista, por arquivo do sistema, qual unit cobre o quê:
 
-| Arquivo do legado | Unit correspondente | Cobertura |
+| Arquivo do sistema | Unit correspondente | Cobertura |
 |---------|---------------------|-----------|
 | `caminho/arquivo.ext` | `<unit>/` | 🟢 / 🟡 / n/a |
 
@@ -166,7 +166,7 @@ Ao concluir, informe ao Lumen:
 - Units geradas (quantidade)
 - Total de arquivos canônicos + opcionais
 - Globais gerados
-- % de cobertura estimada (arquivos do legado mapeados a alguma unit)
+- % de cobertura estimada (arquivos do sistema mapeados a alguma unit)
 
 ## Confiança em cada afirmação
 
@@ -194,7 +194,7 @@ Derive dos fluxos e regras de negócio documentados em `design.md` (ou diretamen
 Baseie em frequência de chamada, posição na cadeia de dependências e presença de testes.
 
 **Tasks** (em `tasks.md`)
-Cada tarefa cita o arquivo do legado de onde o comportamento foi extraído. Critério de pronto sempre presente. Confiança 🟢/🟡/🔴 sempre presente.
+Cada tarefa cita o arquivo do sistema de onde o comportamento foi extraído. Critério de pronto sempre presente. Confiança 🟢/🟡/🔴 sempre presente.
 
 ## Saída resumo
 

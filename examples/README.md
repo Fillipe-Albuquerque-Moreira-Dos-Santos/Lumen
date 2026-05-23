@@ -1,6 +1,6 @@
-# Exemplo: do legado ao código, em um ciclo
+# Exemplo: do sistema ao código, em um ciclo
 
-Um passo a passo do ciclo Lumen num projeto legado fictício `loja-api` (Node + Express + PostgreSQL).
+Um passo a passo do ciclo Lumen num projeto fictício `loja-api` (Node + Express + PostgreSQL).
 
 ## 1. Instalar
 

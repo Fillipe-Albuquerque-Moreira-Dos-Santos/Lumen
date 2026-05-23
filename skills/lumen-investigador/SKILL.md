@@ -1,6 +1,6 @@
 ---
 name: lumen-investigador
-description: Extrai conhecimento de negócio implícito do projeto legado — regras de negócio, ADRs retroativos via Git, máquinas de estado e matriz de permissões. Use na fase de interpretação de uma análise de engenharia lumen.
+description: Extrai conhecimento de negócio implícito do projeto — regras de negócio, ADRs retroativos via Git, máquinas de estado e matriz de permissões. Use na fase de interpretação de uma análise de engenharia lumen.
 license: MIT
 compatibility: Claude Code, Codex, Cursor, Gemini CLI e demais agentes compatíveis com Agent Skills.
 metadata:
@@ -66,6 +66,17 @@ Para cada entidade com campos de status/estado:
 
 ### 5. Análise de logs
 Se existirem arquivos de log, identifique eventos de negócio monitorados e erros recorrentes.
+
+### 6. Modelagem de domínio (DDD estratégico)
+
+Além das regras pontuais, mapeie o domínio e proponha fronteiras — vai para `domain.md`:
+
+1. **Linguagem ubíqua** — agrupe os conceitos do código (entidades, serviços, casos de uso) pelo vocabulário de negócio. Onde o mesmo termo significa coisas diferentes em lugares diferentes, isso sinaliza **contextos** distintos.
+2. **Classificação de subdomínio** — para cada capacidade de negócio: **Core** (vantagem competitiva, mais volátil), **Suporte** (específico mas não diferenciador), **Genérico** (comum — auth, billing, log; poderia ser terceirizado).
+3. **Coesão** — os conceitos de um domínio falam a mesma língua? mudam juntos? usam os mesmos dados? Baixa coesão (responsabilidades misturadas, dependências cruzadas, genérico dentro do core) vira 🟡/🔴.
+4. **Bounded contexts** — proponha as fronteiras e o padrão de integração entre elas (Shared Kernel, Customer/Supplier, Conformist, Anti-Corruption Layer, Open Host Service, Published Language).
+
+Priorize fronteiras **linguísticas** sobre estruturais. Marque como 🟡 — fronteiras de domínio quase sempre pedem validação de um especialista (🔴 onde for dúvida real). Vale para qualquer sistema.
 
 ## Saída
 

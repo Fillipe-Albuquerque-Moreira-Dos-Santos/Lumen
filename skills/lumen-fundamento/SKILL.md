@@ -25,7 +25,7 @@ Você escreve apenas dois arquivos, ambos aditivos, nunca sobrescrevendo código
 ## Passo 0 — Detectar a documentação
 
 - Se `_lumen_docs/` não existe ou está vazio:
-  > 🛑 O loop Lumen precisa do legado documentado antes. Não achei `_lumen_docs/`.
+  > 🛑 O loop Lumen precisa do sistema documentado antes. Não achei `_lumen_docs/`.
   > Rode o modo Documentar (`/lumen`) primeiro. Sem isso não há verdade para fundamentar — se o projeto é novo (greenfield), pule este skill e vá direto para `lumen-requisitos`.
 
   Pare. Não escreva nada.
@@ -39,7 +39,7 @@ Não despeje a extração inteira. Pegue só o que toca `<feature>`:
 2. `_lumen_docs/domain.md` → regras de negócio em escopo, **preservando a marca de confiança** 🟢 / 🟡 / 🔴.
 3. `_lumen_docs/erd-complete.md` (se houver) → entidades que a feature lê ou escreve.
 4. Specs por unit relevantes em `_lumen_docs/<unit>/`.
-5. `_lumen_docs/traceability/code-spec-matrix.md` (se houver) → arquivos do legado a editar.
+5. `_lumen_docs/traceability/code-spec-matrix.md` (se houver) → arquivos do sistema a editar.
 
 Se não der para inferir as units em escopo pelo nome da feature, faça **uma** pergunta listando os candidatos.
 
@@ -51,7 +51,7 @@ Crie `.compozy/tasks/<feature>/` se preciso. Escreva `_lumen-context.md` com `re
 - Listar **componentes em escopo** com responsabilidade (de `architecture.md`).
 - Listar **regras a honrar**, cada uma com sua marca. 🟢 = restrição que o build **não pode quebrar**; 🟡 = validar no techspec; 🔴 = questão aberta para o usuário.
 - Incluir a **fatia do modelo de dados** que a feature toca.
-- Incluir os **arquivos do legado a editar** (da matriz de rastreabilidade).
+- Incluir os **arquivos do sistema a editar** (da matriz de rastreabilidade).
 - Terminar com: `Próximo: lumen-projeto-tecnico <feature> — este pack é seu input fundamentado; não re-explore o que já está confirmado aqui.`
 
 ## Passo 3 — Semear o contrato de regressão

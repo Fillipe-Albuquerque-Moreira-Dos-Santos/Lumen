@@ -31,7 +31,7 @@ No seu agente de IA:
 
 O Lumen detecta em que ponto o projeto está e conduz:
 
-1. **Documenta** o legado → `_lumen_docs/`.
+1. **Documenta** o sistema → `_lumen_docs/`.
 2. **Sugere codar** uma feature; ao aceitar, pergunta o stack e sugere a arquitetura que o sistema já usa.
 3. **Constrói** no motor real:
 

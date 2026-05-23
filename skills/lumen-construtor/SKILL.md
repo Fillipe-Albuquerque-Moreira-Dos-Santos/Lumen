@@ -1,6 +1,6 @@
 ---
 name: lumen-construtor
-description: Quarto passo do modo Construir. Dispara a EXECUÇÃO REAL das tasks pelo motor Compozy (`lumen build <feature>` → `compozy tasks run`), não por imitação. Depois registra os rastros do loop Lumen (legacy-impact + regression-watch). Use quando as tasks já existem em .compozy/tasks/<feature>/ e o usuário quer codar.
+description: Quarto passo do modo Construir. Dispara a EXECUÇÃO REAL das tasks pelo motor Compozy (`lumen build <feature>` → `compozy tasks run`), não por imitação. Depois registra os rastros do loop Lumen (change-impact + regression-watch). Use quando as tasks já existem em .compozy/tasks/<feature>/ e o usuário quer codar.
 argument-hint: "[feature-name]"
 license: MIT
 compatibility: Claude Code, Codex, Cursor, Gemini CLI e demais agentes compatíveis com Agent Skills.
@@ -58,14 +58,14 @@ Se o comando falhar com "motor não encontrado", oriente: `npm i -g @compozy/cli
 
 ## Passo 3 — Registrar os rastros do loop Lumen
 
-O motor executa, mas não conhece a verdade do legado que o Lumen extraiu. Depois do build (mesmo parcial), gere:
+O motor executa, mas não conhece a verdade do sistema que o Lumen extraiu. Depois do build (mesmo parcial), gere:
 
-1. **`_lumen/<feature>/legacy-impact.md`** — para cada arquivo tocado pelo motor (veja o diff/git), mapeie ao componente em `_lumen_docs/architecture.md`; classifique o impacto (regra-alterada, regra-nova, componente-novo, delta-de-dados, delta-de-contrato); liste regras 🟢 preservadas e modificadas.
+1. **`_lumen/<feature>/change-impact.md`** — para cada arquivo tocado pelo motor (veja o diff/git), mapeie ao componente em `_lumen_docs/architecture.md`; classifique o impacto (regra-alterada, regra-nova, componente-novo, delta-de-dados, delta-de-contrato); liste regras 🟢 preservadas e modificadas.
 2. **Atualize `_lumen/<feature>/regression-watch.md`** — para cada regra 🟢 alterada ou removida, ajuste o watch item (append nas seções novas; nunca reescreva histórico ou IDs antigos).
 
 ## Encerramento
 
-Relate: o que o motor executou (tasks done/failed), caminhos de `legacy-impact.md` e `regression-watch.md`, e:
+Relate: o que o motor executou (tasks done/failed), caminhos de `change-impact.md` e `regression-watch.md`, e:
 `Próximo: lumen-auditor <feature> (revisar o código) ou lumen-verificador <feature> (conferir regressão). Digite CONTINUAR.`
 
 Nunca dispare a re-extração sozinho — é decisão do usuário.

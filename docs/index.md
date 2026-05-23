@@ -1,6 +1,6 @@
 # ✦ Lumen
 
-**Luz sobre o legado: documenta o que já existe e constrói o que vem a seguir.**
+**Luz sobre o sistema: documenta o que já existe e constrói o que vem a seguir.**
 
 Um único agente para todo o ciclo de evolução de software — entender o sistema, evoluí-lo, e garantir que nada se quebrou. Roda dentro do seu agente de IA (Claude Code, Codex, Cursor...).
 

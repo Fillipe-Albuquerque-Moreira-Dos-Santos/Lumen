@@ -38,5 +38,5 @@ A documentação não envelhece porque o loop a renova; o código não regride p
 .lumen/                    # state, config, manifest (Lumen)
 _lumen_docs/               # specs extraídas do sistema
 .compozy/tasks/<feature>/  # prd, techspec, tasks, grounding (executados pelo motor)
-_lumen/<feature>/          # regression-watch, legacy-impact (loop Lumen)
+_lumen/<feature>/          # regression-watch, change-impact (loop Lumen)
 ```

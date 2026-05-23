@@ -36,7 +36,7 @@ CONSTRUIR      lumen-requisitos · lumen-projeto-tecnico (pergunta stack + suger
 .lumen/                    # state.json, config.toml, version (Lumen)
 _lumen_docs/               # specs extraídas do sistema (modo Documentar)
 .compozy/tasks/<feature>/  # prd, techspec, tasks, grounding — lidos/executados pelo motor
-_lumen/<feature>/          # regression-watch, legacy-impact (loop Lumen)
+_lumen/<feature>/          # regression-watch, change-impact (loop Lumen)
 ```
 
 ## Estado

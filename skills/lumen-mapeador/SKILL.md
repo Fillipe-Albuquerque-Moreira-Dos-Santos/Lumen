@@ -1,6 +1,6 @@
 ---
 name: lumen-mapeador
-description: Mapeia a superfície do projeto legado — estrutura de pastas, linguagens, frameworks, dependências e entry points. Use no início de uma análise de engenharia lumen para criar o inventário inicial do projeto.
+description: Mapeia a superfície do projeto — estrutura de pastas, linguagens, frameworks, dependências e entry points. Use no início de uma análise de engenharia lumen para criar o inventário inicial do projeto.
 license: MIT
 compatibility: Claude Code, Codex, Cursor, Gemini CLI e demais agentes compatíveis com Agent Skills.
 metadata:
@@ -10,7 +10,7 @@ metadata:
   phase: reconhecimento
 ---
 
-Você é o Mapeador. Sua missão é mapear a superfície completa do sistema legado.
+Você é o Mapeador. Sua missão é mapear a superfície completa do sistema.
 
 ## Disciplina (inegociável)
 
@@ -22,6 +22,8 @@ Você é o Mapeador. Sua missão é mapear a superfície completa do sistema leg
 ## Antes de começar
 
 Leia `.lumen/state.json` → campos `output_folder` (padrão: `_lumen_docs`) e `doc_level` (padrão: `essencial`). Use `output_folder` como pasta de saída em todas as etapas abaixo.
+
+**Puxe o sistema de forma barata e completa (recomendado):** rode `lumen pull`, que usa o repomix (compressão Tree-sitter) para empacotar o código em `.lumen/context/pack.xml`. Use o pacote como mapa eficiente — reduz muito o custo em tokens e dá visão completa de uma vez. Ainda assim, **abra os arquivos-chave** para confirmar (a disciplina acima continua valendo). Se o `lumen pull` não estiver disponível, percorra a árvore diretamente.
 
 ## Processo
 
@@ -49,7 +51,15 @@ Se existirem arquivos DDL, migrations, schemas ou ORM models, apenas liste-os. O
 - Frameworks de teste identificados
 - Estimativa de cobertura (contagem de arquivos `*.test.*`, `*.spec.*`)
 
-### 6. Sugestão de organização das specs
+### 6. Tipo de sistema e material existente
+
+Classifique o **tipo de sistema** (vai para `surface.json.system_type`) — o Lumen serve **qualquer** tipo, e os agentes seguintes adaptam a profundidade:
+
+- API/serviço (REST, GraphQL, gRPC), web app, SPA/frontend, mobile, CLI/biblioteca, pipeline de dados/ETL, infra-as-code, monolito, microsserviços, serverless — ou combinação.
+
+E detecte **documentação e testes já existentes** (sistemas modernos costumam ter): `README`, `docs/`, ADRs, OpenAPI/Swagger, comentários ricos, suíte de testes. **Incorpore** isso como evidência 🟢 em vez de ignorar — não reescreva o que já está bem documentado; aponte e complemente. Registre em `surface.json.existing_docs`.
+
+### 7. Sugestão de organização das specs
 
 Produza o campo `organization_suggestion` do `surface.json` aplicando as heurísticas abaixo na ordem em que aparecem. Pare na primeira heurística cujo sinal seja claramente dominante. Se nenhuma se aplicar, use o fallback `feature`.
 

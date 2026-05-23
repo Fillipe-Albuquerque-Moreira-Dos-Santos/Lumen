@@ -1,6 +1,6 @@
 ---
 name: lumen-requisitos
-description: Primeiro passo do modo Construir. Transforma uma ideia de feature num PRD (documento de requisitos de produto) com decisões de negócio registradas. Use quando o usuário quer construir algo novo e ainda não há PRD. Em projeto documentado, ancore no que o legado já faz.
+description: Primeiro passo do modo Construir. Transforma uma ideia de feature num PRD (documento de requisitos de produto) com decisões de negócio registradas. Use quando o usuário quer construir algo novo e ainda não há PRD. Em projeto documentado, ancore no que o sistema já faz.
 argument-hint: "[feature-name] [descrição]"
 license: MIT
 compatibility: Claude Code, Codex, Cursor, Gemini CLI e demais agentes compatíveis com Agent Skills.
@@ -30,12 +30,12 @@ Você cria o PRD da feature: o **quê** e o **porquê**, nunca o **como**. O com
 ## Estrutura do PRD
 
 - **Resumo executivo** — uma frase do valor + o principal trade-off de produto.
-- **Problema e contexto** — em projeto documentado, cite o que o legado já faz (de `_lumen_docs/`) que esta feature estende ou altera.
+- **Problema e contexto** — em projeto documentado, cite o que o sistema já faz (de `_lumen_docs/`) que esta feature estende ou altera.
 - **Usuários e jobs-to-be-done**.
 - **Requisitos** em MoSCoW (Must / Should / Could / Won't).
 - **Critérios de sucesso** mensuráveis.
 - **Fora de escopo**.
-- **Regras do legado a respeitar** — se há grounding, liste os 🟢 relevantes (são restrições, não negociáveis).
+- **Regras do sistema a respeitar** — se há grounding, liste os 🟢 relevantes (são restrições, não negociáveis).
 
 ## Encerramento
 
