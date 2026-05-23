@@ -46,10 +46,21 @@ Itens que permaneceram sem confirmação após a revisão:
 
 ---
 
-## Recomendações
+## Como chegar a ≥95% (plano de melhoria)
 
-- [ ] [Módulo X] tem [N] lacunas críticas — priorizar validação com stakeholder
-- [ ] [Módulo Y] — [observação específica]
+> Inclua esta seção SEMPRE que a confiança geral estiver abaixo de 95%. Ordene as ações por **ganho ÷ esforço**.
+
+**Confiança atual: [X]% → meta: ≥95%**
+
+| # | Ação | O que fazer | Ganho estimado | Esforço |
+|---|------|-------------|----------------|---------|
+| 1 | Resolver 🔴 [tema] | Responder `questions.md#N` (ex.: qual rota é a oficial) | +[X]% | baixo |
+| 2 | Confirmar 🟡 [tema] | Ler `arquivo:linha` / rodar o fluxo / validar com o time | +[X]% | médio |
+| 3 | Destravar [bloqueio] | Ex.: restaurar arquivo corrompido (`git checkout`), adicionar testes | +[X]% | médio |
+
+**Projeção:** passos 1–2 → ~[X]% · + passo 3 → ~[X]% ✅
+
+> Se já estiver ≥95%: escreva "✅ Meta de confiança atingida — documentação pronta para evoluir com segurança."
 
 ---
 

@@ -136,10 +136,22 @@ Se houve revisão cruzada, inclua uma seção adicional no relatório:
 - Aceitos: [N] | Rejeitados: [N] | Pendentes: [N]
 ```
 
+### 7. Plano de melhoria — meta: confiança ≥ 95%
+
+Calcule a confiança geral (proporção de afirmações 🟢 sobre o total, ponderada por criticidade). **Se ficar abaixo de 95%, não pare no número** — gere um **plano de ação priorizado** de como chegar lá. Inclua na `confidence-report.md` uma seção **"Como chegar a ≥95%"** e destaque os 3–5 primeiros passos para o Lumen mostrar ao usuário no fim.
+
+Para cada coisa que segura a confiança, diga **o que fazer**, **quanto sobe** e **o esforço**:
+
+1. **Resolver lacunas 🔴** (maior impacto) — cada pergunta de `questions.md` respondida promove afirmações a 🟢. Liste por impacto.
+2. **Confirmar inferências 🟡** — para cada 🟡 relevante, diga COMO confirmar (ler tal arquivo, rodar tal fluxo, validar com o time/usuário) para virar 🟢.
+3. **Destravar bloqueios no projeto** — itens que impedem ler/confirmar o código: arquivo corrompido (restaurar via git), ausência de testes (sem eles o comportamento não pode ser confirmado), configs divergentes, contratos front≠back.
+
+Ordene por **ganho de confiança ÷ esforço** e, para os passos do topo, **estime a confiança projetada** se forem feitos (ex.: *"respondendo as 4 perguntas → ~92%; + validando os 🟡 de domínio → ~96%"*). Assim o usuário sabe exatamente o caminho até ≥95% — e, se já estiver ≥95%, registre apenas "meta atingida".
+
 ## Saída
 
 **Sempre:**
-- `_lumen_docs/confidence-report.md` — contagem de 🟢/🟡/🔴 por spec e percentual geral (simplificado se `essencial`)
+- `_lumen_docs/confidence-report.md` — contagem de 🟢/🟡/🔴 por spec, percentual geral e, se < 95%, a seção **"Como chegar a ≥95%"** com o plano priorizado (simplificado se `essencial`)
 - `_lumen_docs/questions.md` — se `essencial`: apenas lacunas 🔴 que bloqueiam reimplementação; se `completo`/`detalhado`: todos os 🔴
 
 **Apenas se `doc_level` for `completo` ou `detalhado`:**

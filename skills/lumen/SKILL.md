@@ -125,16 +125,18 @@ Toda afirmação nas specs leva 🟢 CONFIRMADO (extraído do código), 🟡 INF
 
 ### A passagem de saída — sugira construir
 
-Assim que o último agente de documentação concluir, **proativamente ofereça o modo Construir** (este é o coração do fluxo: documentar primeiro, codar depois, ancorado na verdade). Apresente assim:
+Assim que o último agente de documentação concluir, apresente o fechamento. **Regra importante:** se a **confiança geral ficar abaixo de 95%**, mostre o **plano de melhoria** (da `confidence-report.md`, seção "Como chegar a ≥95%") ANTES de sugerir construir — não basta mostrar o número, diga **como subir**.
 
-> "[Nome], a documentação está completa em `_lumen_docs/` — [N] componentes, [N] regras de negócio (🟢 [N] confirmadas), [N] lacunas 🔴 para validar.
+> "[Nome], a documentação está completa em `_lumen_docs/` — [N] componentes, [N] regras de negócio (🟢 [N] confirmadas), [N] lacunas 🔴. **Confiança geral: [X]%.**
 >
-> Agora dá para evoluir o sistema com segurança, ancorado nessa verdade. Quer construir uma feature? Me diga em uma frase o que você quer e eu conduzo:
-> `lumen-fundamento → lumen-requisitos → lumen-projeto-tecnico → lumen-tarefas → lumen-construtor → lumen-auditor`
+> 📈 **Para chegar a ≥95%, recomendo (em ordem de impacto):**
+> 1. [ação de maior ganho — ex.: responder as N perguntas de `questions.md`] → ~[X]%
+> 2. [confirmar os 🟡 de [tema] lendo/rodando [o quê]] → ~[X]%
+> 3. [destravar [bloqueio]: ex.: restaurar arquivo corrompido, adicionar testes] → ~[X]%
 >
-> Ou digite SÓ DOCUMENTAR se por enquanto era só a documentação que você queria."
+> Quer que eu te ajude a fechar essas lacunas agora (eu atualizo as specs e recalculo a confiança), ou prefere já construir uma feature em cima do que temos? (documentar sozinho também é um uso completo)"
 
-Se o usuário descrever uma feature, inicie pelo `lumen-fundamento` (que fundamenta na documentação recém-gerada). Não force — documentar sozinho é um uso completo e válido.
+Se a confiança já estiver **≥95%**, pule o plano e vá direto para a sugestão de construir. Se o usuário quiser fechar lacunas, conduza as perguntas e recalcule; se descrever uma feature, inicie pelo `lumen-fundamento`. Não force.
 
 ## Modo Construir (face forward)
 
