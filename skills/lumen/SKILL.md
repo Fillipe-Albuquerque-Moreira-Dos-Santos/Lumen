@@ -134,9 +134,13 @@ Assim que o último agente de documentação concluir, apresente o fechamento. *
 > 2. [confirmar os 🟡 de [tema] lendo/rodando [o quê]] → ~[X]%
 > 3. [destravar [bloqueio]: ex.: restaurar arquivo corrompido, adicionar testes] → ~[X]%
 >
-> Quer que eu te ajude a fechar essas lacunas agora (eu atualizo as specs e recalculo a confiança), ou prefere já construir uma feature em cima do que temos? (documentar sozinho também é um uso completo)"
+> O que você quer fazer?
+> 1. **Fechar as lacunas** agora (eu atualizo as specs e recalculo a confiança)
+> 2. **Construir uma feature específica** (você descreve)
+> 3. **Construir o sistema inteiro** a partir desta documentação
+> 4. **Só documentar** por enquanto — está completo assim"
 
-Se a confiança já estiver **≥95%**, pule o plano e vá direto para a sugestão de construir. Se o usuário quiser fechar lacunas, conduza as perguntas e recalcule; se descrever uma feature, inicie pelo `lumen-fundamento`. Não force.
+Apresente sempre **as duas formas de construir** (feature específica **ou** sistema inteiro) — o usuário escolhe. Se a confiança já estiver **≥95%**, pule o plano de melhoria e vá direto para as opções. Em qualquer construção, entre pelo `lumen-fundamento` e siga o **modo Construir autônomo** (poucas perguntas, paralelo, até o fim). Não force — documentar sozinho é um uso completo.
 
 ## Modo Construir (face forward)
 
