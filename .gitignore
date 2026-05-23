@@ -1,0 +1,9 @@
+node_modules/
+.idea/
+.DS_Store
+*.log
+
+# saídas geradas em projetos onde o Lumen roda (não no repo do Lumen)
+_lumen_docs/
+_lumen/
+.lumen/

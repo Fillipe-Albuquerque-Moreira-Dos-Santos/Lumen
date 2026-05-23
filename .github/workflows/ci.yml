@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install deps
+        run: npm install --no-audit --no-fund
+      - name: CLI smoke
+        run: node bin/lumen.js --version
+      - name: Installer logic test
+        run: node scripts/test-install.mjs
+      - name: No old-brand residue in skills (compozy is the engine, allowed)
+        run: |
+          if grep -rl -e reversa -e janus skills/ >/dev/null 2>&1; then
+            echo "Found old-brand residue (reversa/janus) in skills/"; exit 1
+          fi
+          echo "skills clean"

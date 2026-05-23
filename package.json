@@ -1,0 +1,37 @@
+{
+  "name": "lumen",
+  "version": "0.1.0",
+  "description": "Um único agente que entende o legado e constrói o futuro. Documenta sistemas legados e constrói features novas ancoradas na verdade extraída.",
+  "bin": {
+    "lumen": "bin/lumen.js"
+  },
+  "type": "module",
+  "keywords": [
+    "legacy",
+    "reverse-engineering",
+    "specifications",
+    "spec-driven-development",
+    "ai",
+    "agents",
+    "claude",
+    "codex",
+    "cursor"
+  ],
+  "files": [
+    "skills/",
+    "bin/",
+    "lib/",
+    "templates/",
+    "README.md",
+    "LICENSE"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.20.2"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "inquirer": "^9.2.0",
+    "ora": "^7.0.1"
+  }
+}

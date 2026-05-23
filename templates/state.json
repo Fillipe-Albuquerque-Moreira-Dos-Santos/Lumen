@@ -1,0 +1,15 @@
+{
+  "version": "{{VERSION}}",
+  "project": "",
+  "user_name": "",
+  "chat_language": "pt-br",
+  "doc_language": "Português",
+  "output_folder": "_lumen_docs",
+  "work_folder": "_lumen",
+  "answer_mode": "chat",
+  "phase": null,
+  "doc_level": null,
+  "engines": [],
+  "created_files": [],
+  "checkpoints": {}
+}

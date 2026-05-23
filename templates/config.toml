@@ -1,0 +1,25 @@
+# Configuração do Lumen neste projeto.
+# Edite à vontade. Para preferências pessoais que não devem ir pro git,
+# crie um .lumen/config.user.toml com as mesmas chaves (têm precedência).
+
+[project]
+name = ""
+
+[user]
+name = ""
+chat_language = "pt-br"
+doc_language = "Português"
+
+[output]
+output_folder = "_lumen_docs"
+work_folder = "_lumen"
+
+# Como organizar as specs geradas no modo Documentar.
+# granularity: module | use-case | endpoint | hybrid | feature | custom
+# (decidido na primeira execução do /lumen, após o Scout)
+[specs]
+layout = "feature-folder"
+granularity = ""
+
+[engines]
+installed = []
