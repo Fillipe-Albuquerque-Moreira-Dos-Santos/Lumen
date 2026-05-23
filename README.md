@@ -111,6 +111,27 @@ Toda afirmação nas specs leva uma marca — é o que torna a documentação **
 
 **Pré-requisitos:** Node.js 18+ e um agente de IA já instalado (Claude Code, Codex, Cursor...).
 
+### ⚡ O jeito simples (3 passos)
+
+```bash
+# 1. Pegue o Lumen (uma vez na vida)
+git clone https://github.com/Fillipe-Albuquerque-Moreira-Dos-Santos/Lumen.git && cd Lumen && npm install && npm link
+
+# 2. Vá para o seu projeto
+cd ~/dev/meu-projeto
+
+# 3. Manda ver 🚀
+lumen go
+```
+
+O **`lumen go`** faz tudo sozinho: instala os agentes, empacota o sistema e **abre seu agente de IA já documentando**. É só responder o que ele perguntar.
+
+> Quer controlar cada etapa (ou entender o que acontece por baixo)? Veja o passo a passo detalhado abaixo.
+
+---
+
+### Passo a passo detalhado
+
 > ### 🧭 A regra de ouro — onde cada comando roda
 >
 > - 🖥️ **No terminal** → tudo que começa com `lumen ...`

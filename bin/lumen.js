@@ -9,6 +9,7 @@ const pkg = JSON.parse(readFileSync(join(__dirname, '../package.json'), 'utf8'))
 const [, , command, ...args] = process.argv;
 
 const commands = {
+  go: () => import('../lib/commands/go.js'),
   install: () => import('../lib/commands/install.js'),
   update: () => import('../lib/commands/update.js'),
   status: () => import('../lib/commands/status.js'),
@@ -29,7 +30,10 @@ if (!command || command === '--help' || command === '-h') {
   console.log(`
   Lumen v${pkg.version} — luz sobre o sistema: documenta e constrói.
 
-  Uso: npx lumen <comando>
+  Uso: lumen <comando>
+
+  ✨ Comece aqui:
+    go          Faz tudo: instala, empacota e ABRE seu agente já documentando
 
   Comandos:
     install     Instala o Lumen no projeto atual
