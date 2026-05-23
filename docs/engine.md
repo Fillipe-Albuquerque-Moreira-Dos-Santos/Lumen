@@ -1,32 +1,24 @@
 # O motor de execução
 
-O modo **Documentar** e o **loop** são 100% Lumen — skills em markdown que rodam dentro do seu agente, sem runtime próprio.
+O modo **Documentar** e o **loop** são skills em markdown que rodam dentro do seu agente de IA, sem runtime próprio.
 
-Para a **execução** do build, o Lumen usa o **Compozy** como motor: execução headless e concorrente de verdade, com retries, memória entre runs e review. Em vez de imitar isso num prompt, o Lumen delega ao motor real.
+Para a **execução** do build — escrever código de verdade, em lote, com retries e review — o Lumen tem um **motor de execução interno**. Você nunca o instala nem o invoca diretamente: o `lumen build` o aciona por baixo (preparado sob demanda na primeira vez). Toda a experiência é Lumen.
 
 ## Como funciona
 
 ```
-lumen-projeto-tecnico / lumen-tarefas   →   .compozy/tasks/<feature>/   →   lumen build
-   (autoram no formato do motor)        (o seam)                    (= compozy tasks run)
+lumen-projeto-tecnico / lumen-tarefas   →   _lumen/<feature>/   →   lumen build
+        (autoram as tasks)                       (a fronteira)        (executa de verdade)
 ```
 
-- `lumen-tarefas` grava as tasks em `.compozy/tasks/<feature>/` no formato v2 que o motor executa (validado por `compozy tasks validate`).
-- `lumen build <feature>` aciona `compozy tasks run` por baixo. **Você nunca digita `compozy` direto** — a experiência é Lumen.
-- `lumen-auditor` usa o review do motor (`compozy reviews`).
+- `lumen-tarefas` grava as tasks em `_lumen/<feature>/` no formato que o motor executa (confira com `lumen validate`).
+- `lumen build <feature>` executa as tasks de verdade — concorrência, retries, memória entre runs. **Você só usa comandos `lumen`.**
+- `lumen review <feature>` roda a revisão sobre o código gerado.
 
-## Instalação do motor
+## Não precisa instalar nada à parte
 
-```bash
-npm install -g @compozy/cli   # ou brew/go
-lumen setup                   # prepara o motor nos seus agentes
-```
+O motor é acionado automaticamente pelo `lumen build` / `lumen validate` / `lumen review`. Para um build que **escreve código**, o runtime do seu agente de IA precisa estar disponível (ex.: o adaptador ACP do Claude). Use `lumen build <feature> --dry-run` para validar o pipeline sem escrever código.
 
-## Build real vs. dry-run
+## Por que um motor
 
-- `lumen build <feature> --dry-run` valida o pipeline sem executar o agente de código.
-- Um build que **escreve código** precisa de um runtime ACP no PATH para o `--ide` escolhido — ex.: `@zed-industries/claude-code-acp` para `--ide claude`.
-
-## Por que não foi tudo embutido
-
-Execução de código séria não cabe num prompt de 60 linhas. Reescrever um motor de execução completo seria reinventar (e manter) algo enorme. Lumen foca no que é seu — documentar e fechar o loop de regressão — e usa um motor maduro para executar.
+Execução de código séria — concorrente, com retries, memória e review — não cabe num prompt. O Lumen foca no que é dele (documentar, fundamentar, verificar regressão) e delega a execução a um motor maduro, sob a marca Lumen.

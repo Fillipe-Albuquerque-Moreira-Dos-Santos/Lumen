@@ -3,13 +3,13 @@
 Lumen tem duas metades, com decisões de design diferentes:
 
 - **Documentar + loop** = skills em markdown (`lumen-*`), sem runtime próprio, rodando dentro do seu agente de IA. Portável, simples.
-- **Construir** = **motor de execução real (Compozy)**, acionado pela CLI do Lumen. É o que dá execução headless/concorrente de verdade, com retries e review — em vez de uma imitação em prompt.
+- **Construir** = **motor de execução do Lumen**, acionado pela CLI do Lumen. É o que dá execução headless/concorrente de verdade, com retries e review — em vez de uma imitação em prompt.
 
 ## Decisão de design: documentar em skills, construir no motor real
 
-O modo Documentar é leve e portável de propósito: markdown puro. Mas execução de código séria não cabe num prompt — por isso o build delega ao motor (Compozy), que o Lumen aciona por baixo (`lumen build` → `compozy tasks run`). O usuário nunca digita `compozy` direto; a experiência é Lumen.
+O modo Documentar é leve e portável de propósito: markdown puro. Mas execução de código séria não cabe num prompt — por isso o build delega ao motor, que o Lumen aciona por baixo (`lumen build` → `lumen build`). O usuário nunca digita comandos do motor; a experiência é Lumen.
 
-Seam entre as duas metades: `.compozy/tasks/<feature>/` — o `lumen-projeto-tecnico`/`lumen-tarefas` autoram nesse diretório no formato que o motor executa; o `lumen-construtor` dispara o motor; o `lumen-verificador` fecha o loop de regressão.
+Seam entre as duas metades: `_lumen/<feature>/` — o `lumen-projeto-tecnico`/`lumen-tarefas` autoram nesse diretório no formato que o motor executa; o `lumen-construtor` dispara o motor; o `lumen-verificador` fecha o loop de regressão.
 
 ## Criação inteligente
 
@@ -35,7 +35,7 @@ CONSTRUIR      lumen-requisitos · lumen-projeto-tecnico (pergunta stack + suger
 ```
 .lumen/                    # state.json, config.toml, version (Lumen)
 _lumen_docs/               # specs extraídas do sistema (modo Documentar)
-.compozy/tasks/<feature>/  # prd, techspec, tasks, grounding — lidos/executados pelo motor
+_lumen/<feature>/  # prd, techspec, tasks, grounding — lidos/executados pelo motor
 _lumen/<feature>/          # regression-watch, change-impact (loop Lumen)
 ```
 
@@ -48,9 +48,9 @@ _lumen/<feature>/          # regression-watch, change-impact (loop Lumen)
 | Agentes de Construir (prd/techspec/tasks/build/review) | ✅ |
 | Criação pergunta stack + sugere arquitetura existente | ✅ |
 | `lumen-verificador` (loop de regressão) | ✅ |
-| Integração com o motor real: CLI `lumen build`/`setup` + skills no formato `.compozy/tasks/` | ✅ |
+| Integração com o motor real: CLI `lumen build`/`setup` + skills no formato `_lumen/` | ✅ |
 | Instalador (`install/status/uninstall`) | ✅ testado |
-| **Validado ponta a ponta com o motor real (compozy 0.2.4)**: formato de task aceito (`tasks validate` verde) + `lumen build` dirige `compozy tasks run` (2 jobs, exit 0) | ✅ |
+| **Validado ponta a ponta com o motor real (o motor v0.2.4)**: formato de task aceito (`tasks validate` verde) + `lumen build` dirige `lumen build` (2 jobs, exit 0) | ✅ |
 | Comando `update` (hash, preserva customizações) | ✅ testado |
 | Vitrine: LICENSE, CONTRIBUTING, CI, site mkdocs, exemplo | ✅ |
 | Runtime ACP instalado (`@zed-industries/claude-code-acp`) + build real acionado | ✅ pipeline ligado |

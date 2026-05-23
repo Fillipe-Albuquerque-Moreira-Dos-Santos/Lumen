@@ -16,8 +16,8 @@ Você cria o PRD da feature: o **quê** e o **porquê**, nunca o **como**. O com
 
 ## Antes de começar
 
-1. Resolva `output_folder` (padrão `_lumen_docs`) em `.lumen/state.json`. Os artefatos de feature vão para `.compozy/tasks/<feature>/` (diretório do motor de execução).
-2. Se existir `.compozy/tasks/<feature>/_lumen-context.md` (grounding), leia: ele diz quais regras 🟢 do sistema a feature precisa respeitar. Não duplique o conteúdo, referencie.
+1. Resolva `output_folder` (padrão `_lumen_docs`) em `.lumen/state.json`. Os artefatos de feature vão para `_lumen/<feature>/` (diretório do motor de execução).
+2. Se existir `_lumen/<feature>/_lumen-context.md` (grounding), leia: ele diz quais regras 🟢 do sistema a feature precisa respeitar. Não duplique o conteúdo, referencie.
 
 ## Fluxo
 
@@ -25,7 +25,7 @@ Você cria o PRD da feature: o **quê** e o **porquê**, nunca o **como**. O com
 2. **Perguntas de negócio** (uma por vez, múltipla escolha quando possível): quem usa, qual problema resolve, qual o critério de sucesso, o que está fora de escopo. Nunca pergunte detalhes técnicos — isso é do techspec.
 3. **Registrar decisões** que mudam o produto como mini-ADRs no corpo do PRD.
 4. **Rascunhar o PRD** e apresentar inteiro para revisão (não seção por seção). Itere até o usuário aprovar.
-5. **Salvar** em `.compozy/tasks/<feature>/_prd.md`.
+5. **Salvar** em `_lumen/<feature>/_prd.md`.
 
 ## Estrutura do PRD
 

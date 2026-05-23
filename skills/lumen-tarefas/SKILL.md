@@ -1,6 +1,6 @@
 ---
 name: lumen-tarefas
-description: Terceiro passo do modo Construir. Quebra o TechSpec em tasks atômicas no FORMATO DO MOTOR (Compozy task v2), gravadas em .compozy/tasks/<feature>/, prontas para o `compozy tasks run`. Cada task carrega também as restrições 🟢 do sistema. Use quando há _techspec.md e falta a decomposição.
+description: Terceiro passo do modo Construir. Quebra o TechSpec em tasks atômicas no FORMATO DO MOTOR (formato do motor, v2), gravadas em _lumen/<feature>/, prontas para o `lumen build`. Cada task carrega também as restrições 🟢 do sistema. Use quando há _techspec.md e falta a decomposição.
 argument-hint: "[feature-name]"
 license: MIT
 compatibility: Claude Code, Codex, Cursor, Gemini CLI e demais agentes compatíveis com Agent Skills.
@@ -12,16 +12,16 @@ metadata:
   stage: tasks
 ---
 
-Você decompõe o TechSpec em tasks que o **motor de execução (Compozy)** consegue rodar uma a uma, na ordem certa. As tasks vão para `.compozy/tasks/<feature>/` — o diretório que o motor lê — no formato v2 exato, senão `compozy tasks validate` rejeita.
+Você decompõe o TechSpec em tasks que o **motor de execução do Lumen** consegue rodar uma a uma, na ordem certa. As tasks vão para `_lumen/<feature>/` — o diretório que o motor lê — no formato v2 exato, senão `lumen validate` rejeita.
 
 ## Antes de começar
 
-1. Leia `.compozy/tasks/<feature>/_techspec.md` e `.compozy/tasks/<feature>/_lumen-context.md` (grounding, se houver).
+1. Leia `_lumen/<feature>/_techspec.md` e `_lumen/<feature>/_lumen-context.md` (grounding, se houver).
 2. Explore a base de código para ancorar cada task em arquivos e padrões reais.
 
-## Formato obrigatório (Compozy task v2)
+## Formato obrigatório (formato do motor, v2)
 
-Para cada task, escreva `.compozy/tasks/<feature>/task_NN.md` começando com este frontmatter YAML:
+Para cada task, escreva `_lumen/<feature>/task_NN.md` começando com este frontmatter YAML:
 
 ```md
 ---
@@ -95,7 +95,7 @@ E o corpo nesta estrutura (o motor espera estas seções):
 Valide e siga:
 
 ```
-compozy tasks validate --name <feature>
+lumen validate --name <feature>
 ```
 
 Se passar, diga: `Próximo: lumen-construtor <feature> (executa no motor real). Digite CONTINUAR.`

@@ -18,7 +18,7 @@ Para uma feature, o Lumen primeiro **fundamenta** (`lumen-fundamento`): lê de `
 
 Na **criação** (`lumen-projeto-tecnico`), o Lumen **pergunta o stack** (linguagem, backend, frontend, banco, testes) e, em projeto documentado, **sugere o que o sistema já usa** como padrão recomendado — para o código novo encaixar sem inventar arquitetura estranha.
 
-Pipeline: `lumen-requisitos → lumen-projeto-tecnico → lumen-tarefas → lumen-construtor → lumen-auditor`. Os artefatos vão para `.compozy/tasks/<feature>/` (o diretório do motor). O `lumen-construtor` dispara o **motor real** — é onde o código é escrito.
+Pipeline: `lumen-requisitos → lumen-projeto-tecnico → lumen-tarefas → lumen-construtor → lumen-auditor`. Os artefatos vão para `_lumen/<feature>/` (o diretório do motor). O `lumen-construtor` dispara o **motor real** — é onde o código é escrito.
 
 ## 3. Verificar
 
@@ -37,6 +37,6 @@ A documentação não envelhece porque o loop a renova; o código não regride p
 ```
 .lumen/                    # state, config, manifest (Lumen)
 _lumen_docs/               # specs extraídas do sistema
-.compozy/tasks/<feature>/  # prd, techspec, tasks, grounding (executados pelo motor)
+_lumen/<feature>/  # prd, techspec, tasks, grounding (executados pelo motor)
 _lumen/<feature>/          # regression-watch, change-impact (loop Lumen)
 ```

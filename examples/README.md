@@ -7,7 +7,7 @@ Um passo a passo do ciclo Lumen num projeto fictício `loja-api` (Node + Express
 ```bash
 cd loja-api
 npx lumen install
-npm install -g @compozy/cli && lumen setup
+lumen setup
 ```
 
 ## 2. Documentar
@@ -32,7 +32,7 @@ Ao terminar, ele sugere: *"Quer construir uma feature? Me diga em uma frase."*
 
 Você: *"adicionar cupom de desconto no checkout"*.
 
-- `lumen-fundamento` gera `.compozy/tasks/cupom-desconto/_lumen-context.md` com o **stack** (Node + Express + PG), os **componentes** do checkout e a regra 🟢 "pedido só é faturado se pago" como restrição.
+- `lumen-fundamento` gera `_lumen/cupom-desconto/_lumen-context.md` com o **stack** (Node + Express + PG), os **componentes** do checkout e a regra 🟢 "pedido só é faturado se pago" como restrição.
 - `lumen-projeto-tecnico` **pergunta o stack** — e como o sistema já é Node + Express + PG, **sugere manter**. Você confirma. Desenha a arquitetura no mesmo padrão de camadas.
 - `lumen-tarefas` quebra em `task_01.md`, `task_02.md`… no formato do motor.
 - `lumen build cupom-desconto` → o motor escreve o código de verdade.

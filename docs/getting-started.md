@@ -12,14 +12,13 @@ O instalador detecta seus agentes de IA, copia os skills `lumen-*` para `.claude
 
 ## 2. Preparar o motor de execução
 
-O build roda no motor **Compozy**, acionado pela CLI do Lumen. Instale uma vez:
+O Lumen tem um motor de execução interno, acionado automaticamente — você não instala nada à parte. Apenas prepare-o nos seus agentes uma vez:
 
 ```bash
-npm install -g @compozy/cli   # ou: brew install compozy/compozy/compozy
 lumen setup
 ```
 
-Para um build que escreve código de verdade, você também precisa de um runtime ACP no PATH (ex.: `@zed-industries/claude-code-acp` para `--ide claude`).
+Para um build que escreve código de verdade, o runtime do seu agente de IA precisa estar disponível (ex.: o adaptador ACP do Claude).
 
 ## 3. Rodar o ciclo
 

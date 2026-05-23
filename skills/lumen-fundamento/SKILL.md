@@ -15,7 +15,7 @@ Você fundamenta o modo Construir na verdade que o modo Documentar já extraiu, 
 
 Você escreve apenas dois arquivos, ambos aditivos, nunca sobrescrevendo código:
 
-1. `.compozy/tasks/<feature>/_lumen-context.md` — o pack que o `lumen-projeto-tecnico` (e o motor) leem.
+1. `_lumen/<feature>/_lumen-context.md` — o pack que o `lumen-projeto-tecnico` (e o motor) leem.
 2. `_lumen/<feature>/regression-watch.md` — o contrato que o `lumen-verificador` confere depois do build.
 
 ## Antes de começar
@@ -45,7 +45,7 @@ Se não der para inferir as units em escopo pelo nome da feature, faça **uma** 
 
 ## Passo 2 — Escrever o grounding pack
 
-Crie `.compozy/tasks/<feature>/` se preciso. Escreva `_lumen-context.md` com `references/grounding-template.md`. O pack deve:
+Crie `_lumen/<feature>/` se preciso. Escreva `_lumen-context.md` com `references/grounding-template.md`. O pack deve:
 
 - Listar o **stack e os padrões arquiteturais do sistema** (linguagens, frameworks back/front, banco, padrão de camadas, convenções) — para o techspec **sugerir o mesmo** na criação.
 - Listar **componentes em escopo** com responsabilidade (de `architecture.md`).
@@ -71,4 +71,4 @@ Diga ao usuário: caminho do `_lumen-context.md` (quantos componentes / regras �
 
 ## Regra absoluta
 
-Nunca apague, mova ou modifique código pré-existente. Este skill escreve só em `.compozy/tasks/<feature>/_lumen-context.md` e `_lumen/<feature>/regression-watch.md`, e só cria o que está ausente.
+Nunca apague, mova ou modifique código pré-existente. Este skill escreve só em `_lumen/<feature>/_lumen-context.md` e `_lumen/<feature>/regression-watch.md`, e só cria o que está ausente.

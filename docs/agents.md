@@ -35,8 +35,8 @@
 |--------|-------|
 | `lumen-requisitos` | Ideia → PRD (o quê e o porquê). |
 | `lumen-projeto-tecnico` | Pergunta o stack e sugere a arquitetura existente → TechSpec (o como). |
-| `lumen-tarefas` | TechSpec → tasks no formato do motor (`.compozy/tasks/`). |
-| `lumen-construtor` | Dispara o motor real (`compozy tasks run`) — escreve o código. |
+| `lumen-tarefas` | TechSpec → tasks no formato do motor (`_lumen/`). |
+| `lumen-construtor` | Dispara o motor real (`lumen build`) — escreve o código. |
 | `lumen-auditor` | Revisa e corrige via review do motor. |
 
 ## Escala de confiança

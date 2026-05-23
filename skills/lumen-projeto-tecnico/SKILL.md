@@ -1,6 +1,6 @@
 ---
 name: lumen-projeto-tecnico
-description: Segundo passo do modo Construir. Na criação, PERGUNTA o stack desejado (linguagem, backend, frontend, banco, infra, testes) e SUGERE arquitetura/stack iguais aos que o sistema já usa (do grounding) para o código novo se encaixar. Produz o TechSpec em .compozy/tasks/<feature>/_techspec.md. Use quando há _prd.md e falta o desenho técnico.
+description: Segundo passo do modo Construir. Na criação, PERGUNTA o stack desejado (linguagem, backend, frontend, banco, infra, testes) e SUGERE arquitetura/stack iguais aos que o sistema já usa (do grounding) para o código novo se encaixar. Produz o TechSpec em _lumen/<feature>/_techspec.md. Use quando há _prd.md e falta o desenho técnico.
 argument-hint: "[feature-name]"
 license: MIT
 compatibility: Claude Code, Codex, Cursor, Gemini CLI e demais agentes compatíveis com Agent Skills.
@@ -12,12 +12,12 @@ metadata:
   stage: techspec
 ---
 
-Você desenha o **como**. Toda decisão técnica é fundamentada: primeiro no que o sistema já faz, depois no que a feature precisa. Os artefatos vão para `.compozy/tasks/<feature>/` (o diretório que o motor de execução lê).
+Você desenha o **como**. Toda decisão técnica é fundamentada: primeiro no que o sistema já faz, depois no que a feature precisa. Os artefatos vão para `_lumen/<feature>/` (o diretório que o motor de execução lê).
 
 ## Antes de começar
 
-1. Leia `.compozy/tasks/<feature>/_prd.md` como input primário. Se ausente, peça contexto e registre a ausência no resumo.
-2. **Leia `.compozy/tasks/<feature>/_lumen-context.md` (grounding) se existir** — é a verdade confirmada do sistema: stack atual, padrões arquiteturais, regras 🟢 (restrições que o design não pode quebrar), modelo de dados. Não re-explore o que já está confirmado lá.
+1. Leia `_lumen/<feature>/_prd.md` como input primário. Se ausente, peça contexto e registre a ausência no resumo.
+2. **Leia `_lumen/<feature>/_lumen-context.md` (grounding) se existir** — é a verdade confirmada do sistema: stack atual, padrões arquiteturais, regras 🟢 (restrições que o design não pode quebrar), modelo de dados. Não re-explore o que já está confirmado lá.
 3. Se NÃO há grounding (greenfield), explore a base de código (se houver) para entender padrões e stack.
 
 ## Regra dura
@@ -45,10 +45,10 @@ O objetivo é que o usuário **só confirme** quando o sistema já tem um stack 
 ## Fase 2 — Desenhar fundamentado
 
 1. **Proponha a arquitetura espelhando os padrões existentes.** Se o sistema usa, por exemplo, arquitetura em camadas, repositórios, e um certo padrão de erro, a feature segue o **mesmo** padrão. Desvios só com justificativa explícita em ADR. (Quando documentado, isto vem do grounding; quando greenfield, do stack escolhido na Fase 1.)
-2. **ADRs** para cada decisão significativa, em `.compozy/tasks/<feature>/adrs/adr-NNN.md` (use `references/adr-template.md`): decisão, alternativas rejeitadas, consequências. Mudança de stack vs. o existente é sempre um ADR.
+2. **ADRs** para cada decisão significativa, em `_lumen/<feature>/adrs/adr-NNN.md` (use `references/adr-template.md`): decisão, alternativas rejeitadas, consequências. Mudança de stack vs. o existente é sempre um ADR.
 3. **Rascunhe o TechSpec** com `references/techspec-template.md`. YAGNI sem dó. Cada objetivo do PRD mapeia para um componente. Cada regra 🟢 do grounding aparece como restrição honrada. A seção de stack reflete as respostas da Fase 1.
 4. **Revise** com o usuário (rascunho inteiro). Itere até aprovar.
-5. **Salve** em `.compozy/tasks/<feature>/_techspec.md`.
+5. **Salve** em `_lumen/<feature>/_techspec.md`.
 
 ## Encerramento
 

@@ -1,6 +1,6 @@
 ---
 name: lumen-construtor
-description: Quarto passo do modo Construir. Dispara a EXECUÇÃO REAL das tasks pelo motor Compozy (`lumen build <feature>` → `compozy tasks run`), não por imitação. Depois registra os rastros do loop Lumen (change-impact + regression-watch). Use quando as tasks já existem em .compozy/tasks/<feature>/ e o usuário quer codar.
+description: Quarto passo do modo Construir. Dispara a EXECUÇÃO REAL das tasks pelo motor do Lumen (`lumen build <feature>` → `lumen build`), não por imitação. Depois registra os rastros do loop Lumen (change-impact + regression-watch). Use quando as tasks já existem em _lumen/<feature>/ e o usuário quer codar.
 argument-hint: "[feature-name]"
 license: MIT
 compatibility: Claude Code, Codex, Cursor, Gemini CLI e demais agentes compatíveis com Agent Skills.
@@ -12,20 +12,20 @@ metadata:
   stage: build
 ---
 
-Você **não** escreve o código à mão. Quem executa as tasks é o **motor real (Compozy)**, sob a marca Lumen. Seu papel: garantir o pré-requisito, disparar o motor, e depois registrar os rastros que fecham o loop Lumen.
+Você **não** escreve o código à mão. Quem executa as tasks é o **motor do Lumen**, sob a marca Lumen. Seu papel: garantir o pré-requisito, disparar o motor, e depois registrar os rastros que fecham o loop Lumen.
 
 ## Antes de começar
 
-1. Confirme que existem tasks em `.compozy/tasks/<feature>/task_*.md` (geradas pelo `lumen-tarefas` no formato do motor). Se não houver, aborte apontando `lumen-tarefas`.
+1. Confirme que existem tasks em `_lumen/<feature>/task_*.md` (geradas pelo `lumen-tarefas` no formato do motor). Se não houver, aborte apontando `lumen-tarefas`.
 2. Resolva `work_folder` (padrão `_lumen`) e `output_folder` (padrão `_lumen_docs`).
-3. Leia `.compozy/tasks/<feature>/_lumen-context.md` (grounding) se existir — as regras 🟢 são restrições que o build não pode quebrar; elas já estão embutidas nas tasks, mas tenha-as em mente para a auditoria pós-build.
+3. Leia `_lumen/<feature>/_lumen-context.md` (grounding) se existir — as regras 🟢 são restrições que o build não pode quebrar; elas já estão embutidas nas tasks, mas tenha-as em mente para a auditoria pós-build.
 
 ## Passo 1 — Validar as tasks no motor
 
 Rode no terminal:
 
 ```
-compozy tasks validate --name <feature>
+lumen validate --name <feature>
 ```
 
 Se acusar erro de formato, peça ao `lumen-tarefas` para corrigir antes de prosseguir.
@@ -38,18 +38,18 @@ Rode:
 lumen build <feature>
 ```
 
-(que por baixo chama `compozy tasks run <feature> --ide <engine>` — execução real, headless/concorrente, com retries e memória do motor). Acompanhe a saída. O motor implementa o código, valida e atualiza o status de cada task.
+(que por baixo chama `lumen build <feature> --ide <engine>` — execução real, headless/concorrente, com retries e memória do motor). Acompanhe a saída. O motor implementa o código, valida e atualiza o status de cada task.
 
 > ⚠️ É aqui que o código do projeto é realmente escrito — pelo motor. Deixe isso explícito ao usuário antes de disparar.
 
-Se o comando falhar com "motor não encontrado", oriente: `npm i -g @compozy/cli` (ou brew/go), depois `lumen setup`, e tente de novo.
+O motor é acionado automaticamente pelo `lumen build` — não há instalação manual. A primeira execução pode levar alguns segundos para preparar o motor.
 
 ## Resiliência — se o build for interrompido (créditos, rede, queda)
 
 **Nada se perde.** O estado vive em disco a cada passo:
 
-- Cada task carrega seu `status:` no próprio arquivo (`.compozy/tasks/<feature>/task_*.md`): as concluídas viram `done`, as demais ficam `pending`.
-- O motor persiste o run em `~/.compozy/runs/` e mantém memória entre execuções.
+- Cada task carrega seu `status:` no próprio arquivo (`_lumen/<feature>/task_*.md`): as concluídas viram `done`, as demais ficam `pending`.
+- O motor persiste o run em o armazenamento interno do motor e mantém memória entre execuções.
 - Você também registra `_lumen/<feature>/progress.jsonl` (append-only) a cada task concluída.
 
 **Para retomar:** rode `lumen build <feature>` de novo. O motor **pula as tasks `done`** e continua das `pending` (re-execução incremental — `include_completed` é `false` por padrão). A pior perda possível é a única task que estava no meio quando caiu — ela volta a `pending` e roda de novo limpa (o motor faz diff-check de worktree).
