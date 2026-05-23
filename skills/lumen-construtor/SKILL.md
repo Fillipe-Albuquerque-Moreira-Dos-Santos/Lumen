@@ -44,6 +44,18 @@ lumen build <feature>
 
 Se o comando falhar com "motor não encontrado", oriente: `npm i -g @compozy/cli` (ou brew/go), depois `lumen setup`, e tente de novo.
 
+## Resiliência — se o build for interrompido (créditos, rede, queda)
+
+**Nada se perde.** O estado vive em disco a cada passo:
+
+- Cada task carrega seu `status:` no próprio arquivo (`.compozy/tasks/<feature>/task_*.md`): as concluídas viram `done`, as demais ficam `pending`.
+- O motor persiste o run em `~/.compozy/runs/` e mantém memória entre execuções.
+- Você também registra `_lumen/<feature>/progress.jsonl` (append-only) a cada task concluída.
+
+**Para retomar:** rode `lumen build <feature>` de novo. O motor **pula as tasks `done`** e continua das `pending` (re-execução incremental — `include_completed` é `false` por padrão). A pior perda possível é a única task que estava no meio quando caiu — ela volta a `pending` e roda de novo limpa (o motor faz diff-check de worktree).
+
+**Caso específico — créditos da conta acabaram** (`Credit balance is too low`): o trabalho já feito está salvo em disco e commitado pelas tasks `done`. Recarregue créditos e rode `lumen build <feature>` para continuar exatamente de onde parou. Informe isso ao usuário com calma — não há perda.
+
 ## Passo 3 — Registrar os rastros do loop Lumen
 
 O motor executa, mas não conhece a verdade do legado que o Lumen extraiu. Depois do build (mesmo parcial), gere:

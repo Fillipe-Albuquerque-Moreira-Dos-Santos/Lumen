@@ -111,6 +111,7 @@ lumen-fundamento → lumen-requisitos → lumen-projeto-tecnico → lumen-tarefa
 - Em projeto novo sem legado (greenfield), pule o `lumen-fundamento` e comece no `lumen-requisitos`.
 - **Na criação (`lumen-projeto-tecnico`), pergunte o stack desejado** (linguagem, backend, frontend, banco, infra, testes). Em projeto documentado, **sugira o que o sistema já usa** como padrão recomendado — o usuário só confirma; mudar exige ADR. Em greenfield, ele decide.
 - **O build é executado pelo motor real (Compozy), sob a marca Lumen.** O `lumen-construtor` dispara `lumen build <feature>` (= `compozy tasks run`), que escreve o código de verdade. Deixe isso explícito ao usuário antes de disparar. Se o motor não estiver instalado, oriente: `npm i -g @compozy/cli`, depois `lumen setup`.
+- **Interrupção nunca perde tudo.** Documentação tem checkpoint por agente em `.lumen/state.json`; o build tem `status:` por task. Se a sessão cair ou os créditos acabarem, retome: `/lumen` continua a documentação de onde parou, e `lumen build <feature>` continua as tasks `pending` (pulando as `done`). A pior perda é o único passo que estava em andamento.
 
 ## Modo Verificar (o loop)
 
