@@ -41,7 +41,7 @@ if (!command || command === '--help' || command === '-h') {
     pull        Puxa o sistema (comprimido) para uma extração barata e completa
     setup       Prepara o motor de execução do Lumen nos agentes
     validate    Confere as tasks de uma feature: lumen validate <feature>
-    build       Constrói uma feature: lumen build <feature>
+    build       Constrói o SISTEMA INTEIRO a partir da documentação (ou: lumen build <feature>)
     review      Revisa e corrige o código de uma feature: lumen review <feature>
     status      Mostra o estágio atual do ciclo
     uninstall   Remove o Lumen (só o que ele criou)

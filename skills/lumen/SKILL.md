@@ -162,6 +162,8 @@ Quando o usuário quer **completo, sem babysitting** (descreve o objetivo e quer
 
 Nada além disso é perguntado — o resto é inferido da documentação.
 
+**Construir o SISTEMA INTEIRO a partir dos docs** (gatilho: `lumen build` sem feature, ou "construa o sistema inteiro"): a **documentação inteira é a spec**. Leia **todos os specs por unit** em `_lumen_docs/` (`<unit>/requirements.md|design.md|tasks.md`) + `architecture.md`/`domain.md`/`erd-complete.md`/`openapi/`, e derive as tarefas executáveis de **cada unit** — em **subagentes paralelos, um por unit**. Não pergunte unit por unit; só a pergunta de stack acima.
+
 **Depois, execute sem pausar** (você, agente, conduz tudo, inclusive rodando os comandos de terminal):
 
 ```
