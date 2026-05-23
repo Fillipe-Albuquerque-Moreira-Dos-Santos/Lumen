@@ -35,6 +35,19 @@ O campo `doc_level` do state.json controla o que gerar:
 | `flowcharts/[modulo].md` | não (fluxo em texto) | sim | sim + por função principal |
 | `modules.json` | sim | sim | sim |
 
+## Execução: paralela quando a engine suporta
+
+Os módulos são **independentes** entre si — então analise-os **em paralelo** quando a engine tiver subagentes (ex.: Claude Code). É mais rápido **e** preserva o contexto principal (cada subagente tem o seu próprio).
+
+- **Com subagentes (Claude Code):** para cada módulo do plano, lance **um subagente em paralelo**. Cada subagente analisa o seu módulo (seções 1–4 abaixo) e grava **só os seus arquivos**, sem colidir com os outros:
+  - `.lumen/context/modules/<modulo>.json`
+  - `_lumen_docs/code-analysis/<modulo>.md`
+
+  Use o `.lumen/context/pack.xml` (do `lumen pull`) como mapa para passar a cada subagente apenas o recorte do seu módulo. Quando **todos** retornarem, **consolide**: junte os `<modulo>.json` em `modules.json` e os `<modulo>.md` em `code-analysis.md`.
+- **Sem subagentes:** faça módulo a módulo, sequencialmente, com checkpoint por módulo (como nas seções abaixo).
+
+> ⚠️ Paralelo consome mais tokens **de uma vez** (mais rápido); sequencial é mais gentil com orçamento apertado. Em crédito curto, rode em **lotes de 2–3 módulos** por vez.
+
 ## Processo — para cada módulo do plano
 
 ### 1. Fluxo de controle

@@ -89,9 +89,15 @@ Estes ficam na raiz de `<output_folder>/`, não dentro de feature folders:
 
 **Specs são contratos operacionais, não texto bonito.** Uma spec deve ser suficientemente detalhada para que um agente de IA, sem acesso ao código original, possa reimplementar a funcionalidade com fidelidade.
 
-## Regra de execução obrigatória
+## Execução paralela (modo automático)
 
-**Nunca gere tudo de uma vez.** Projetos grandes têm muitas units. Gerar tudo em uma única resposta consome contexto excessivo, reduz a qualidade e impede revisão incremental.
+As units são **independentes** — então, em engines com subagentes (ex.: Claude Code) e/ou no **modo automático** (`lumen go`), gere as specs **em paralelo: uma subagente por unit**. Cada subagente escreve a sua pasta `<unit>/` (requirements/design/tasks + opcionais) no seu próprio contexto, sem pausar. Ao final, o agente principal gera os globais (traceability, openapi, user-stories) e relata.
+
+> Em **orçamento de tokens curto**, gere em lotes de 2–3 units por vez.
+
+## Regra de execução (modo manual)
+
+**Não gere tudo numa única resposta sequencial** — num único contexto, muitas units estouram o contexto e baixam a qualidade. (Por isso o paralelo acima usa subagentes: cada unit tem o seu próprio contexto.) No modo **manual/passo a passo**, gere uma unit por vez e confirme com o usuário entre elas; no modo **automático**, não pause — use o paralelo acima.
 
 ## Fluxo obrigatório
 
