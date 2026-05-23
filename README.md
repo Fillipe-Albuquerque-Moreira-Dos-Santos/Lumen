@@ -109,80 +109,81 @@ Toda afirmação nas specs leva uma marca — é o que torna a documentação **
 
 ## Passo a passo — do `git clone` ao uso
 
-**Pré-requisitos:** Node.js 18+ e um agente de IA (Claude Code, Codex, Cursor, Gemini...).
+**Pré-requisitos:** Node.js 18+ e um agente de IA já instalado (Claude Code, Codex, Cursor...).
 
-### 1. Clone o Lumen e instale as dependências
+> ### 🧭 A regra de ouro — onde cada comando roda
+>
+> - 🖥️ **No terminal** → tudo que começa com `lumen ...`
+> - 💬 **Dentro do seu agente de IA** (ex.: Claude Code) → o comando `/lumen`
+>
+> E existem **duas pastas diferentes**: a pasta do **Lumen** (você clona uma vez) e a pasta do **seu projeto** (onde você de fato usa).
+
+---
+
+### Parte A — Preparar o Lumen 🖥️ *(só uma vez na máquina)*
 
 ```bash
 git clone https://github.com/Fillipe-Albuquerque-Moreira-Dos-Santos/Lumen.git
 cd Lumen
 npm install
+npm link            # cria o comando `lumen` global — passa a funcionar em qualquer pasta
 ```
 
-### 2. Deixe o comando `lumen` disponível no sistema
+Confira com `lumen --version`. Pronto — **você nunca mais precisa entrar nesta pasta.**
+
+> Não quer usar `npm link`? Então, no lugar de `lumen`, use `node /caminho/para/Lumen/bin/lumen.js`.
+
+---
+
+### Parte B — Documentar o SEU projeto 📖
+
+**B1.** 🖥️ No terminal, entre na pasta do **seu projeto** e instale os agentes:
 
 ```bash
-npm link        # agora `lumen` funciona em qualquer pasta
+cd ~/dev/meu-projeto      # o sistema que você quer documentar (qualquer stack)
+lumen install             # detecta seu agente, cria .lumen/, escreve CLAUDE.md… (não toca no seu código)
 ```
 
-> Sem o `npm link`? Use `node /caminho/para/Lumen/bin/lumen.js` no lugar de `lumen` nos passos abaixo.
-
-### 3. Vá para o SEU projeto (o sistema que você quer documentar)
+**B2.** 🖥️ *(Opcional, recomendado)* Puxe o sistema comprimido — extração mais barata em tokens:
 
 ```bash
-cd /caminho/do/seu-projeto      # legado, moderno ou novo — qualquer stack
+lumen pull
 ```
 
-### 4. Instale os agentes Lumen nesse projeto
-
-```bash
-lumen install
-```
-
-Ele detecta seu agente de IA, copia os skills para `.claude/skills/` (e `.agents/skills/`), escreve o arquivo de entrada (`CLAUDE.md` / `AGENTS.md` / …), cria `.lumen/` e atualiza o `.gitignore`. **Nunca toca no seu código** — só cria arquivos novos.
-
-### 5. Prepare o motor de execução (para construir código)
-
-```bash
-lumen setup
-```
-
-### 6. (Opcional, recomendado) Puxe o sistema comprimido
-
-```bash
-lumen pull      # extração barata e completa, reduz tokens — funciona em qualquer stack
-```
-
-### 7. Documente o sistema
-
-Abra seu agente de IA no projeto e digite:
+**B3.** 💬 Abra seu agente de IA **nessa mesma pasta** e digite:
 
 ```
 /lumen
 ```
 
-O Lumen mapeia, escava, interpreta e gera as specs em `_lumen_docs/` — cada afirmação marcada 🟢 / 🟡 / 🔴. Ao terminar, ele **sugere construir**.
+O Lumen documenta o sistema e gera tudo em **`_lumen_docs/`** (cada afirmação 🟢 / 🟡 / 🔴). No caminho ele pergunta o **nível de documentação** e a **organização das specs** — é só responder. Ao terminar, ele **sugere construir**.
 
-### 8. Construa uma feature
-
-Diga ao `/lumen` o que quer ("adicionar cupom de desconto"), responda o stack (ele sugere o que o sistema já usa), e então:
-
-```bash
-lumen build cupom-desconto      # executa as tarefas e escreve o código de verdade
-lumen review cupom-desconto     # revisa e corrige
-```
-
-### 9. Verifique que nada regrediu
-
-```
-/lumen        # modo Verificar — confere o regression-watch (🟢/🟡/🔴)
-```
+> ✅ **Se você só quer a documentação, acabou aqui.** O resultado está em `_lumen_docs/`.
 
 ---
 
-> 💡 **Atalho futuro:** quando o Lumen estiver publicado no npm, os passos 1–2 viram um só — `npx lumen install` — direto no seu projeto, sem clonar nada.
+### Parte C — Construir uma feature 🔨 *(quando quiser evoluir o código)*
 
-O modo Documentar e o loop rodam dentro do seu agente de IA. A **execução** do build usa um **motor interno**, acionado automaticamente — você só usa comandos `lumen`.
+**C1.** 🖥️ Uma vez, prepare o motor de execução:
+
+```bash
+lumen setup
+```
+
+**C2.** 💬 No `/lumen`, descreva a feature (ex.: *"adicionar cupom de desconto"*). Ele monta requisitos → projeto técnico → tarefas (e pergunta/sugere o stack que o sistema já usa).
+
+**C3.** 🖥️ Construa e revise de verdade:
+
+```bash
+lumen build cupom-desconto      # escreve o código
+lumen review cupom-desconto     # revisa e corrige
+```
+
+**C4.** 💬 Rode `/lumen` de novo (modo **Verificar**) — ele confere que nenhuma regra 🟢 regrediu.
+
+---
+
+> 💡 **No futuro**, quando o Lumen estiver publicado no npm, a Parte A inteira some: você roda só `npx lumen install` direto no seu projeto, sem clonar nada.
 
 ---
 
