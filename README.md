@@ -45,6 +45,8 @@ Lumen é **um só** agente — uma única instalação, uma única marca, um con
 
 Funciona para **qualquer sistema** — legado, moderno ou em desenvolvimento; qualquer stack ou tipo (API, web, mobile, CLI, dados, infra, monolito, microsserviços).
 
+⚡ **Roda em paralelo:** sempre que dá, o Lumen dispara **vários subagentes ao mesmo tempo** (cada um com a sua skill, no seu próprio contexto) — documentando módulos, construindo units e auditando em paralelo. Mais rápido **e** sem estourar o contexto.
+
 ---
 
 ## Por que o Lumen existe
@@ -128,93 +130,9 @@ lumen go
 
 O **`lumen go`** faz tudo sozinho: instala os agentes, empacota o sistema e **abre seu agente de IA já documentando**. É só responder o que ele perguntar.
 
-> Quer controlar cada etapa (ou entender o que acontece por baixo)? Veja o passo a passo detalhado abaixo.
+**Depois, para construir** (escrever código): rode `lumen build` — ele pergunta se você quer o **sistema inteiro** ou **uma feature**, faz as poucas perguntas essenciais (com sugestões de nome, stack e arquitetura) e cuida do resto, autônomo e em paralelo.
 
----
-
-### Passo a passo detalhado
-
-> ### 🧭 A regra de ouro — onde cada comando roda
->
-> - 🖥️ **No terminal** → tudo que começa com `lumen ...`
-> - 💬 **Dentro do seu agente de IA** (ex.: Claude Code) → o comando `/lumen`
->
-> E existem **duas pastas diferentes**: a pasta do **Lumen** (você clona uma vez) e a pasta do **seu projeto** (onde você de fato usa).
-
----
-
-### Parte A — Preparar o Lumen 🖥️ *(só uma vez na máquina)*
-
-```bash
-git clone https://github.com/Fillipe-Albuquerque-Moreira-Dos-Santos/Lumen.git
-cd Lumen
-npm install
-npm link            # cria o comando `lumen` global — passa a funcionar em qualquer pasta
-```
-
-Confira com `lumen --version`. Pronto — **você nunca mais precisa entrar nesta pasta.**
-
-> Não quer usar `npm link`? Então, no lugar de `lumen`, use `node /caminho/para/Lumen/bin/lumen.js`.
-
----
-
-### Parte B — Documentar o SEU projeto 📖
-
-**B1.** 🖥️ No terminal, entre na pasta do **seu projeto** e instale os agentes:
-
-```bash
-cd ~/dev/meu-projeto      # o sistema que você quer documentar (qualquer stack)
-lumen install             # detecta seu agente, cria .lumen/, escreve CLAUDE.md… (não toca no seu código)
-```
-
-**B2.** 🖥️ *(Opcional, recomendado)* Puxe o sistema comprimido — extração mais barata em tokens:
-
-```bash
-lumen pull
-```
-
-**B3.** 💬 Abra seu agente de IA **nessa mesma pasta** e digite:
-
-```
-/lumen
-```
-
-O Lumen documenta o sistema e gera tudo em **`_lumen_docs/`** (cada afirmação 🟢 / 🟡 / 🔴). No caminho ele pergunta o **nível de documentação** e a **organização das specs** — é só responder. Ao terminar, ele **sugere construir**.
-
-> ✅ **Se você só quer a documentação, acabou aqui.** O resultado está em `_lumen_docs/`.
-
----
-
-### Parte C — Construir 🔨 *(quando quiser evoluir o código)*
-
-**C1.** 🖥️ Uma vez, prepare o motor (interno, automático — você não instala nada à parte):
-
-```bash
-lumen setup
-```
-
-**C2.** 🖥️ Um comando só — você escolhe o escopo:
-
-```bash
-lumen build
-```
-
-Ele pergunta:
-- **O sistema inteiro** (a partir de toda a documentação), ou
-- **Uma feature específica** (você descreve numa frase).
-
-A criação é **guiada** (estilo workflow completo), perguntando só o essencial **com sugestões**:
-- 🏷️ **Nome** — sugere 2–3 e deixa você digitar o seu;
-- 🧩 **Linguagem/stack** — sugere o que o sistema já usa (ou ideal, em greenfield);
-- 🏛️ **Arquitetura** — sugere 2–3 ideais com trade-offs e recomenda uma.
-
-Depois roda **autônomo e em paralelo** (vários subagentes ao mesmo tempo) até o fim: requisitos → projeto técnico → tarefas → **código** → revisão. O código é escrito pelo **motor de execução** (concorrente, com retries), não à mão.
-
-**C3.** 💬 Rode `/lumen` (modo **Verificar**) — confere que nenhuma regra 🟢 regrediu.
-
----
-
-> 💡 **No futuro**, quando o Lumen estiver publicado no npm, a Parte A inteira some: você roda só `npx lumen install` direto no seu projeto, sem clonar nada.
+> 💡 `lumen ...` é no **terminal**. O `/lumen` (se quiser conduzir manualmente, passo a passo) roda **dentro do seu agente de IA**, não no terminal.
 
 ---
 
