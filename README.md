@@ -21,6 +21,25 @@
 
 ---
 
+## 🚀 Em 2 comandos
+
+```bash
+lumen go       # 📖 DOCUMENTA o seu sistema   → specs confiáveis em _lumen_docs/
+lumen build    # 🔨 CONSTRÓI a aplicação       → escreve o código de verdade
+```
+
+**Primeira vez?** Setup único (≈10s, uma vez na máquina):
+
+```bash
+git clone https://github.com/Fillipe-Albuquerque-Moreira-Dos-Santos/Lumen.git && cd Lumen && npm install && npm link
+```
+
+Depois, em **qualquer projeto**: `cd ~/dev/seu-projeto` → `lumen go` (documenta) → `lumen build` (constrói). Simples assim.
+
+> 💡 `lumen ...` roda no **terminal**. (Prefere modo manual? Digite `/lumen` **dentro** do seu agente de IA.)
+
+---
+
 ## O que é
 
 Lumen é **um só** agente — uma única instalação, uma única marca, um conjunto de skills em markdown que rodam dentro do seu agente de IA. Ele cobre **todo o ciclo** de evolução de software, em três modos amarrados por um loop:
@@ -111,28 +130,13 @@ Quando a confiança geral fica **abaixo de 95%**, o Lumen não para no número �
 
 ---
 
-## Passo a passo — do `git clone` ao uso
+## Como usar (detalhe)
 
-**Pré-requisitos:** Node.js 18+ e um agente de IA já instalado (Claude Code, Codex, Cursor...).
+- **`lumen go`** → 📖 documenta o sistema. Gera as specs em `_lumen_docs/`, marca cada afirmação 🟢/🟡/🔴 e, ao terminar, sugere construir.
+- **`lumen build`** → 🔨 constrói. Pergunta se você quer o **sistema inteiro** ou **uma feature**, deixa você **escolher o stack** (linguagem, versão, framework, banco — item por item, com sugestões) e então gera o código, autônomo e em paralelo.
 
-### ⚡ O jeito simples (3 passos)
-
-```bash
-# 1. Pegue o Lumen (uma vez na vida)
-git clone https://github.com/Fillipe-Albuquerque-Moreira-Dos-Santos/Lumen.git && cd Lumen && npm install && npm link
-
-# 2. Vá para o seu projeto
-cd ~/dev/meu-projeto
-
-# 3. Manda ver 🚀
-lumen go
-```
-
-O **`lumen go`** faz tudo sozinho: instala os agentes, empacota o sistema e **abre seu agente de IA já documentando**. É só responder o que ele perguntar.
-
-**Depois, para construir** (escrever código): rode `lumen build` — ele pergunta se você quer o **sistema inteiro** ou **uma feature**, faz as poucas perguntas essenciais (com sugestões de nome, stack e arquitetura) e cuida do resto, autônomo e em paralelo.
-
-> 💡 `lumen ...` é no **terminal**. O `/lumen` (se quiser conduzir manualmente, passo a passo) roda **dentro do seu agente de IA**, não no terminal.
+> **Pré-requisitos:** Node.js 18+ e um agente de IA (Claude Code, Codex, Cursor...).
+> Sem `npm link`? Use `node /caminho/para/Lumen/bin/lumen.js` no lugar de `lumen`.
 
 ---
 
