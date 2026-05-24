@@ -64,7 +64,7 @@ Lumen é **um só** agente — uma única instalação, uma única marca, um con
 
 Funciona para **qualquer sistema** — legado, moderno ou em desenvolvimento; qualquer stack ou tipo (API, web, mobile, CLI, dados, infra, monolito, microsserviços).
 
-⚡ **Roda em paralelo:** sempre que dá, o Lumen dispara **vários subagentes ao mesmo tempo** (cada um com a sua skill, no seu próprio contexto) — documentando módulos, construindo units e auditando em paralelo. Mais rápido **e** sem estourar o contexto.
+⚡ **Vários agentes ao mesmo tempo.** O Lumen é paralelo por princípio: ao **documentar**, dispara subagentes por módulo; ao **construir**, a própria CLI **orquestra vários agentes em paralelo** — backend ∥ frontend (desacoplados) ou um por unit — com teto de concorrência e um **painel de progresso ao vivo**. Mais rápido **e** sem estourar o contexto.
 
 ---
 
@@ -130,12 +130,62 @@ Quando a confiança geral fica **abaixo de 95%**, o Lumen não para no número �
 
 ---
 
+## 🔨 Construir com vários agentes em paralelo
+
+`lumen build` é uma **CLI guiada**: pergunta só o essencial, **trava** suas escolhas e dispara a construção sozinha, do começo ao fim.
+
+**O que ele pergunta:**
+1. **Escopo** — o sistema inteiro (a partir dos docs) ou uma feature.
+2. **Stack** — linguagem, versão, framework, banco, frontend… *item por item, com a versão exata que você quiser* (nunca assume).
+3. **Nome** — sugestões prontas **+ sempre a opção de digitar o seu**.
+4. **Paralelismo** — quantos agentes ao mesmo tempo.
+
+Aí mostra o **plano** e pede confirmação:
+
+```
+  Plano de construção (paralelo)
+  ──────────────────────────────
+  Sistema      minha-loja-v2
+  Stack        Node 22 · NestJS 11 · React 19 · PostgreSQL 17
+  Destino      fora do legado · front/back desacoplados
+  Agentes      Claude Code · 2 streams, 2 em paralelo
+  Isolamento   git worktree + branch por agente (merge no fim)
+```
+
+E roda **vários agentes ao mesmo tempo**, com painel ao vivo:
+
+```
+  2 agentes em paralelo · isolados em git worktree
+
+  ▶ Backend (API)    running   12s   gerando endpoints…
+  ▶ Frontend (SPA)   running   12s   montando as telas…
+```
+
+**Como ele isola e junta o trabalho** (o padrão dos melhores orquestradores):
+
+- Cada agente roda no **seu próprio git worktree + branch** — zero colisão entre eles.
+- Deps gitignored (`node_modules`, docs) são **linkadas** em cada worktree.
+- No fim, o Lumen faz o **merge** das branches; se algo conflitar, ele avisa exatamente qual `git merge` rodar.
+
+**Onde o código nasce — nunca misturado ao legado:**
+
+| Intenção | Onde |
+|----------|------|
+| **Evoluir** (mesmo stack) | no lugar, no projeto atual |
+| **Modernizar** | sistema **novo (v2) FORA** do legado, com **front e back desacoplados** em pastas separadas |
+| **Greenfield** | pasta própria isolada |
+
+> Atalhos: `lumen build <feature>` executa direto as tarefas já geradas; `lumen build <feature> --bg` roda em background (acompanhe com `lumen runs watch <id>`).
+
+---
+
 ## Como usar (detalhe)
 
 - **`lumen go`** → 📖 documenta o sistema. Gera as specs em `_lumen_docs/`, marca cada afirmação 🟢/🟡/🔴 e, ao terminar, sugere construir.
-- **`lumen build`** → 🔨 constrói. Pergunta se você quer o **sistema inteiro** ou **uma feature**, deixa você **escolher o stack** (linguagem, versão, framework, banco — item por item, com sugestões) e então gera o código, autônomo e em paralelo.
+- **`lumen build`** → 🔨 constrói (veja a seção acima): escopo, stack exato, nome, e dispara vários agentes em paralelo, isolados por worktree, até o fim.
 
 > **Pré-requisitos:** Node.js 18+ e um agente de IA (Claude Code, Codex, Cursor...).
+> O modo paralelo usa agentes que rodam *headless* (Claude Code, Codex); com os demais, o Lumen abre um agente interativo.
 > Sem `npm link`? Use `node /caminho/para/Lumen/bin/lumen.js` no lugar de `lumen`.
 
 ---
@@ -154,13 +204,18 @@ A pior perda possível é o único passo que estava em andamento. É um **pause*
 ## O que é gerado
 
 ```
-.lumen/                 # estado, config, manifest (interno do Lumen)
+.lumen/                 # estado, config, manifest, principles (interno do Lumen)
+  └── build-logs/       # log de cada agente quando constrói em paralelo
 _lumen_docs/            # as specs extraídas do sistema (a documentação)
   ├── inventory.md, dependencies.md, code-analysis.md
   ├── domain.md, architecture.md, erd-complete.md, c4-*.md
   ├── confidence-report.md, gaps.md
   └── <unit>/requirements.md · design.md · tasks.md
 _lumen/<feature>/       # artefatos de cada feature construída + regression-watch
+
+# Ao MODERNIZAR, o sistema novo nasce FORA do legado (não mistura):
+../<sistema>-backend/   # backend novo, desacoplado
+../<sistema>-frontend/  # frontend novo, desacoplado
 ```
 
 ---
@@ -168,17 +223,19 @@ _lumen/<feature>/       # artefatos de cada feature construída + regression-wat
 ## CLI
 
 ```bash
-lumen go           # ⭐ faz tudo: instala, empacota e abre seu agente já documentando
-lumen install      # instala os agentes no projeto
-lumen update       # atualiza os skills preservando suas customizações (hash SHA-256)
-lumen pull         # puxa o sistema comprimido para extração barata e completa
-lumen setup        # prepara o motor de execução (interno, automático)
-lumen build        # constrói — pergunta: o SISTEMA INTEIRO (dos docs) ou uma feature
-lumen build <f>    # executa direto as tarefas já geradas de uma feature
-lumen review <f>   # revisa e corrige o código de uma feature
-lumen validate <f> # confere as tarefas de uma feature
-lumen status       # mostra o estágio atual do ciclo
-lumen uninstall    # remove só o que o Lumen criou
+lumen go            # ⭐ faz tudo: instala, empacota e abre seu agente já documentando
+lumen install       # instala os agentes no projeto
+lumen update        # atualiza os skills preservando suas customizações (hash SHA-256)
+lumen pull          # puxa o sistema comprimido para extração barata e completa
+lumen setup         # prepara o motor de execução (interno, automático)
+lumen build         # constrói — guiado: SISTEMA INTEIRO (vários agentes ∥) ou feature
+lumen build <f>     # executa direto as tarefas já geradas de uma feature
+lumen build <f> --bg # constrói em background
+lumen runs watch <id> # acompanha uma construção em background
+lumen review <f>    # revisa e corrige o código de uma feature
+lumen validate <f>  # confere as tarefas de uma feature
+lumen status        # mostra o estágio atual do ciclo
+lumen uninstall     # remove só o que o Lumen criou
 ```
 
 ## Engines suportadas
