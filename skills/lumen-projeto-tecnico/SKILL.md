@@ -64,6 +64,8 @@ Saiba o que o usuário quer (pergunte se não estiver claro):
 
 ### Sugerir arquiteturas ideais (greenfield ou quando o usuário quer melhorar)
 
+> ⚙️ **Se a arquitetura já veio escolhida** (ex.: o `lumen build` travou no kickoff: "ARQUITETURA: use EXATAMENTE…"), **honre-a — não reabra**. A seção abaixo só vale quando ninguém escolheu ainda.
+
 Não pergunte "qual arquitetura?" no vácuo. **Proponha 2–3 arquiteturas adequadas** ao tipo de sistema e ao stack, cada uma com um trade-off em uma linha, e **recomende uma**. Ex. para uma API:
 
 > "Para uma API nesse stack, sugiro:
