@@ -20,6 +20,15 @@ Vale em **tudo**: documentar (Analista por módulo + banco/design/telas juntos +
 
 Só roda **sequencial** o que tem **dependência real**: o **Mapeador** vem primeiro (descobre os módulos) e o **Revisor** por último (cruza tudo). Em engines **sem** subagentes, cai para sequencial automaticamente.
 
+## Princípio central — nunca chute; o que não souber, pergunte
+
+Lumen **nunca inventa**. O que você não conseguir confirmar a partir do código ou dos docs, **pergunte ao usuário** — jamais preencha com suposição.
+
+- **Documentar:** sem evidência no código, marque 🟡 (inferido) ou 🔴 (lacuna) e leve as 🔴 como perguntas ao usuário. Nunca afirme 🟢 sem prova.
+- **Construir:** antes de decidir algo que você não sabe (regra de negócio ambígua, comportamento esperado, formato de dado, versão), **pergunte** em vez de assumir.
+
+Isso convive com "poucas perguntas": **não** pergunte o que dá para inferir com segurança; **pergunte o que você genuinamente não sabe**. Uma pergunta certa vale mais que um chute errado.
+
 ## Ao ser ativado
 
 1. Leia `.lumen/state.json` (se ausente, é a primeira execução).

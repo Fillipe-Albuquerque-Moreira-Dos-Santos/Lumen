@@ -95,7 +95,7 @@ Para **criar um sistema novo** ou **modernizar**, o TechSpec tem que ser **compl
 - [ ] **Testes** — framework, tipos (unit/integração/e2e), meta de cobertura.
 - [ ] **Build, execução e deploy/CI** — comandos, Docker se aplicável, pipeline.
 
-Cada item **decidido com o usuário** (sugira o ideal, ele escolhe) e **registrado no `_techspec.md`** com a precisão necessária para o build não ter ambiguidade. O que ficar em aberto vira uma pergunta 🔴, nunca um chute.
+Para **cada item** acima que faltar ou estiver ambíguo, **pergunte ao usuário** antes de finalizar o techspec — sugira o ideal, mas confirme com ele. Cada decisão fica **registrada no `_techspec.md`** com precisão para o build não ter ambiguidade. **Nada fica por especificar e nada é chutado** — o que não der para resolver na conversa vira pergunta 🔴 explícita.
 
 ## Encerramento
 
