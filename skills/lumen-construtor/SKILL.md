@@ -20,6 +20,17 @@ Você **não** escreve o código à mão. Quem executa as tasks é o **motor do 
 2. Resolva `work_folder` (padrão `_lumen`) e `output_folder` (padrão `_lumen_docs`).
 3. Leia `_lumen/<feature>/_lumen-context.md` (grounding) se existir — as regras 🟢 são restrições que o build não pode quebrar; elas já estão embutidas nas tasks, mas tenha-as em mente para a auditoria pós-build.
 
+## Boas práticas obrigatórias (todo build segue)
+
+Se existir `.lumen/principles.md` (a "constituição" do projeto — princípios não-negociáveis), **leia e honre** com precedência. Na ausência, vale este baseline:
+
+- **🔒 Segurança (OWASP Top 10):** **nunca** segredos hardcoded (use env/secrets), **valide toda entrada**, controle de acesso em cada rota protegida, sem injeção (SQL/comando/template), dependências confiáveis. Dados sensíveis tratados com cuidado.
+- **🧪 Testes (TDD):** cada tarefa tem testes que provam o comportamento; o motor **valida antes de marcar `done`** (`cy-final-verify` exige evidência — nada de "pronto" sem teste passando).
+- **📐 Convenções:** siga lint/format e os padrões da arquitetura escolhida; conventional commits; sem código morto.
+- **🟢 Não quebrar o existente:** as regras 🟢 do grounding são restrições — o build não pode violá-las.
+
+Essas práticas já entram nas tarefas (via `lumen-tarefas`) e na execução (skills do motor); aqui você confirma que estão valendo, e o `lumen-auditor` checa de novo no fim.
+
 ## Passo 1 — Validar as tasks no motor
 
 Rode no terminal:

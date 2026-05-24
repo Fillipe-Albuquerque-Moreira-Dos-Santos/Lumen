@@ -28,7 +28,14 @@ Você fecha a qualidade do código recém-construído usando o review do **motor
 
    Ambos produzem issues em `_lumen/<feature>/reviews-NNN/`.
 
-2. **Auditoria Lumen por cima.** Além do review do motor, confira especificamente: nenhuma regra 🟢 do `_lumen-context.md` foi violada, critérios de aceitação das tasks cumpridos, e nada contradiz o `_techspec.md`. Acrescente o que faltar como issues.
+2. **Auditoria Lumen por cima.** Além do review do motor, confira especificamente:
+   - nenhuma regra 🟢 do `_lumen-context.md` foi violada;
+   - critérios de aceitação das tasks cumpridos, nada contradiz o `_techspec.md`;
+   - **segurança (OWASP):** sem segredos hardcoded, entrada validada, controle de acesso, sem injeção (SQL/comando/template), dependências confiáveis;
+   - **testes** presentes e passando para cada tarefa;
+   - se houver `.lumen/principles.md`, tudo o que ele exige.
+
+   Acrescente o que faltar como issues (com severidade — **segurança = alta/crítica**).
 
 3. **Corrigir.** Rode:
 
