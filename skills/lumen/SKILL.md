@@ -161,8 +161,12 @@ lumen-fundamento → lumen-requisitos → lumen-projeto-tecnico → lumen-tarefa
 Quando o usuário quer **completo, sem babysitting** (descreve o objetivo e quer o resultado pronto), faça **só as perguntas essenciais** e rode o pipeline **de ponta a ponta, sem parar**:
 
 **Perguntas essenciais (apenas estas):**
-1. **O que construir?** — o objetivo/escopo. Pode ser uma feature **ou o sistema inteiro** (escopo grande vira muitas tarefas — tudo bem).
-2. **Stack:** em projeto documentado, **confirme numa única pergunta** o que o sistema já usa (Enter aceita). Em greenfield, pergunte linguagem + backend + frontend de uma vez só.
+1. **O que construir?** — o objetivo/escopo. Pode ser uma feature **ou o sistema inteiro**.
+2. **Intenção:** evoluir no stack atual **ou modernizar** (trocar stack/versões)?
+3. **Stack:**
+   - **Evoluir no stack atual:** confirme numa única pergunta o que o sistema já usa (Enter aceita).
+   - **🛑 Modernizar:** **nunca** mantenha o atual — pergunte o **novo stack com versão exata** (ex.: Java 21? 26? Spring Boot 3.x?), camada por camada, **escolha do usuário** (submenus). Veja `lumen-projeto-tecnico`.
+   - **Greenfield:** sugira o stack ideal, sempre com versão exata, e deixe escolher.
 
 Nada além disso é perguntado — o resto é inferido da documentação.
 

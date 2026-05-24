@@ -24,25 +24,37 @@ Você desenha o **como**. Toda decisão técnica é fundamentada: primeiro no qu
 
 Não escreva o `_techspec.md` até todas as fases estarem completas e o usuário aprovar o rascunho. Todo TechSpec é informado pela arquitetura existente — nunca por suposição.
 
-## Fase 1 — Stack e arquitetura
+## Fase 1 — Intenção, stack e arquitetura
 
-> **Modo automático / simples (poucas perguntas):** em projeto **documentado**, NÃO faça a bateria de perguntas — **confirme o stack que o sistema já usa numa ÚNICA pergunta** (ex.: *"Vou manter Java/Spring + Vue + PostgreSQL, que é o que o sistema usa. Ok? (Enter confirma)"*) e infira o resto da documentação; só pergunte algo a mais se houver um **fork de design real**. Em **greenfield**, pergunte linguagem + backend + frontend **de uma vez só**. Nada de questionário longo.
+### Passo 1 — Qual é a intenção? (define tudo)
 
-No modo **manual/detalhado**, aprofunde — **pergunte ao usuário como ele quer o sistema** (uma pergunta por vez, múltipla escolha quando der). Cubra:
+Saiba o que o usuário quer (pergunte se não estiver claro):
 
-- **Linguagem(ns)** principal
-- **Backend** (framework/runtime)
-- **Frontend** (framework, se aplicável)
-- **Banco de dados / persistência**
-- **Infra / deploy** (se relevante)
-- **Testes** (framework e nível de cobertura)
+| Intenção | Como sugerir o stack |
+|----------|----------------------|
+| **Evoluir no stack atual** (add/altera mantendo a tecnologia) | Confirme o que o sistema já usa (do grounding/`architecture.md`) — pré-selecionado. Em modo simples, **uma única pergunta** de confirmação. |
+| **Modernizar / reconstruir** (trocar stack ou subir versões) | **🛑 NUNCA sugira "manter como está".** Proponha o **moderno** e deixe o usuário escolher **cada detalhe, com versão exata** (Passo 2). |
+| **Greenfield** (sistema novo) | Não há o que espelhar — sugira o stack ideal e deixe escolher, sempre com versão exata. |
 
-**Como sugerir (faça por ele):**
+### Passo 2 — Escolha granular do stack (sempre versão exata, decisão do usuário)
 
-- **Projeto documentado:** leia do grounding/`_lumen_docs/architecture.md` o que o sistema **já usa** e ofereça isso como a opção **recomendada e pré-selecionada** em cada pergunta. Ex.: *"O sistema já usa Node + Express + PostgreSQL. Recomendo manter para a feature encaixar. Confirma, ou quer outra coisa?"* Mudar de stack é permitido, mas você registra o porquê num ADR.
-- **Greenfield:** não há o que espelhar — **sugira o stack e a arquitetura ideais** para o que ele quer construir (veja "Sugerir arquiteturas ideais" abaixo), recomende uma, e deixe escolher (sempre com "Outro — descreva").
+**Nada genérico** ("Java", "Node"). Para **cada camada**, ofereça opções e, ao escolher uma linguagem/framework, **abra um submenu da versão exata**. Você marca a recomendada com ⭐ (LTS/atual), mas **quem decide cada item é o usuário** — sempre com **"outra — eu digito"**.
 
-O objetivo é que o usuário **só confirme** quando o sistema já tem um stack claro, e **escolha entre boas opções sugeridas** quando é projeto novo. Nunca invente o stack silenciosamente, nem deixe o usuário no vácuo — **sempre traga sugestões fundamentadas**.
+**Linguagem → versão (submenu):**
+- **Java** → 17 (LTS) ⭐ · 21 (LTS) · 26 · outra
+- **Node.js** → 20 (LTS) · 22 (LTS) ⭐ · 24 · outra
+- **Python** → 3.11 · 3.12 ⭐ · 3.13 · outra
+- **Go** → 1.22 · 1.23 ⭐ · outra
+- **C# / .NET** → 8 (LTS) ⭐ · 9 · outra
+- (ou outra linguagem que o usuário pedir → pergunte a versão)
+
+**Backend framework → versão:** se escolheu Java → Spring Boot 3.3.x ⭐ · 3.4.x · Quarkus 3.x · Micronaut 4.x · outra. Node → NestJS 11 · Express 5 · Fastify 5 · outra. Python → FastAPI · Django 5.x · Flask 3.x · outra. (Sempre com submenu de versão.)
+
+**Frontend (se houver) → versão:** React 19 · Vue 3.x · Angular 18+ · Svelte 5 · outra.
+**Banco → versão:** PostgreSQL 17 · MySQL 8.x · MongoDB 7 · outra.
+**Testes / infra-deploy:** idem — opção + versão.
+
+> Em **modernização**, percorra todas as camadas com esses submenus. Em **evoluir no stack atual** (modo simples), basta confirmar o stack existente numa pergunta. Em qualquer caso, **registre as escolhas num ADR**.
 
 ### Sugerir arquiteturas ideais (greenfield ou quando o usuário quer melhorar)
 
