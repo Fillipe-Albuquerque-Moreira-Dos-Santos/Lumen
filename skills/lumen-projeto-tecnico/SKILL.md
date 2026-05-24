@@ -40,6 +40,8 @@ Saiba o que o usuário quer (pergunte se não estiver claro):
 
 **Nada genérico** ("Java", "Node"). Para **cada camada**, ofereça opções e, ao escolher uma linguagem/framework, **abra um submenu da versão exata**. Você marca a recomendada com ⭐ (LTS/atual), mas **quem decide cada item é o usuário** — sempre com **"outra — eu digito"**.
 
+> 🎯 **Versão exata, sempre.** As versões listadas são **atalhos, não limites**. O usuário pode **digitar a versão exata que quiser** em qualquer camada — ex.: `Angular 18`, `Angular 18.2.1`, `Angular 19.1.0`, `Java 21.0.5`, `Node 22.11`. Aceite e **use exatamente o que ele digitar** (registre a versão precisa no `_techspec.md` e no ADR). Nunca arredonde nem troque a versão por conta própria.
+
 **Linguagem → versão (submenu):**
 - **Java** → 17 (LTS) ⭐ · 21 (LTS) · 26 · outra
 - **Node.js** → 20 (LTS) · 22 (LTS) ⭐ · 24 · outra
@@ -73,9 +75,27 @@ Registre a escolhida (e por que) num ADR.
 
 1. **Desenhe na arquitetura definida na Fase 1.** Em projeto documentado, **espelhe os padrões existentes** (camadas, repositórios, padrão de erro) — desvios só com ADR. Em greenfield, use a **arquitetura ideal escolhida** acima.
 2. **ADRs** para cada decisão significativa, em `_lumen/<feature>/adrs/adr-NNN.md` (use `references/adr-template.md`): decisão, alternativas rejeitadas, consequências. Mudança de stack vs. o existente é sempre um ADR.
-3. **Rascunhe o TechSpec** com `references/techspec-template.md`. YAGNI sem dó. Cada objetivo do PRD mapeia para um componente. Cada regra 🟢 do grounding aparece como restrição honrada. A seção de stack reflete as respostas da Fase 1.
+3. **Rascunhe o TechSpec** com `references/techspec-template.md`. Cada objetivo do PRD mapeia para um componente. Cada regra 🟢 do grounding aparece como restrição honrada. A seção de stack reflete as respostas da Fase 1.
 4. **Revise** com o usuário (rascunho inteiro). Itere até aprovar.
 5. **Salve** em `_lumen/<feature>/_techspec.md`.
+
+### Sistema novo / modernização — especifique TUDO (nada genérico)
+
+Para **criar um sistema novo** ou **modernizar**, o TechSpec tem que ser **completo e concreto** — o build executa exatamente o que estiver aqui, então não deixe nada vago. Especifique:
+
+- [ ] **Stack com versões exatas** — linguagem, runtime, frameworks back/front, banco, libs principais (versão precisa que o usuário escolheu).
+- [ ] **Estrutura do projeto** — pastas/módulos, onde cada coisa fica, organização de arquivos.
+- [ ] **Arquitetura e camadas** — responsabilidade de cada camada, fluxo de uma requisição ponta a ponta.
+- [ ] **Modelo de dados** — entidades, campos com tipos, obrigatoriedade, relações, índices, migrations.
+- [ ] **Contratos de API** — cada endpoint: método, rota, payload, resposta, códigos de status, erros.
+- [ ] **Convenções** — nomes, estilo de código, lint/format, padrão de commits.
+- [ ] **Tratamento de erros e logging** — formato de erro, níveis de log, observabilidade.
+- [ ] **Autenticação e autorização** — mecanismo, papéis, o que é protegido.
+- [ ] **Configuração e ambientes** — variáveis (`.env`), secrets (nunca em texto plano), perfis.
+- [ ] **Testes** — framework, tipos (unit/integração/e2e), meta de cobertura.
+- [ ] **Build, execução e deploy/CI** — comandos, Docker se aplicável, pipeline.
+
+Cada item **decidido com o usuário** (sugira o ideal, ele escolhe) e **registrado no `_techspec.md`** com a precisão necessária para o build não ter ambiguidade. O que ficar em aberto vira uma pergunta 🔴, nunca um chute.
 
 ## Encerramento
 
