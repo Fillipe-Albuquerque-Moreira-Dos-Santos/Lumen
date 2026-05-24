@@ -64,7 +64,7 @@ Lumen é **um só** agente — uma única instalação, uma única marca, um con
 
 Funciona para **qualquer sistema** — legado, moderno ou em desenvolvimento; qualquer stack ou tipo (API, web, mobile, CLI, dados, infra, monolito, microsserviços).
 
-⚡ **Trabalha em paralelo na documentação.** Ao **documentar**, o Lumen dispara **vários subagentes ao mesmo tempo** (um por módulo, cada um no seu contexto) — mais rápido e sem estourar o contexto. Ao **construir**, um agente conduz o pipeline de ponta a ponta, ancorado na verdade extraída.
+⚡ **Trabalha em paralelo — com um agente só.** Ao **documentar**, o Lumen dispara **vários subagentes ao mesmo tempo** (um por módulo). Ao **construir**, o **mesmo agente** toca **várias funcionalidades de uma vez** (subagentes internos + execução concorrente do motor) — porque cada unit tem seu spec completo em `_lumen_docs/`, que serve de contrato e evita colisão. Tudo numa sessão só.
 
 ---
 
