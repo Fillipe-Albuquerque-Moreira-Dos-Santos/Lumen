@@ -64,7 +64,7 @@ Lumen é **um só** agente — uma única instalação, uma única marca, um con
 
 Funciona para **qualquer sistema** — legado, moderno ou em desenvolvimento; qualquer stack ou tipo (API, web, mobile, CLI, dados, infra, monolito, microsserviços).
 
-⚡ **Vários agentes ao mesmo tempo.** O Lumen é paralelo por princípio: ao **documentar**, dispara subagentes por módulo; ao **construir**, a própria CLI **orquestra vários agentes em paralelo** — backend ∥ frontend (desacoplados) ou um por unit — com teto de concorrência e um **painel de progresso ao vivo**. Mais rápido **e** sem estourar o contexto.
+⚡ **Trabalha em paralelo na documentação.** Ao **documentar**, o Lumen dispara **vários subagentes ao mesmo tempo** (um por módulo, cada um no seu contexto) — mais rápido e sem estourar o contexto. Ao **construir**, um agente conduz o pipeline de ponta a ponta, ancorado na verdade extraída.
 
 ---
 
@@ -130,42 +130,25 @@ Quando a confiança geral fica **abaixo de 95%**, o Lumen não para no número �
 
 ---
 
-## 🔨 Construir com vários agentes em paralelo
+## 🔨 Construir
 
-`lumen build` é uma **CLI guiada**: pergunta só o essencial, **trava** suas escolhas e dispara a construção sozinha, do começo ao fim.
+`lumen build` é uma **CLI guiada**: pergunta só o essencial, **trava** suas escolhas e conduz a construção de ponta a ponta.
 
 **O que ele pergunta:**
 1. **Escopo** — o sistema inteiro (a partir dos docs) ou uma feature.
 2. **Stack** — linguagem, versão, framework, banco, frontend… *item por item, com a versão exata que você quiser* (nunca assume).
 3. **Nome** — sugestões prontas **+ sempre a opção de digitar o seu**.
-4. **Paralelismo** — quantos agentes ao mesmo tempo.
 
 Aí mostra o **plano** e pede confirmação:
 
 ```
-  Plano de construção (paralelo)
-  ──────────────────────────────
-  Sistema      minha-loja-v2
-  Stack        Node 22 · NestJS 11 · React 19 · PostgreSQL 17
-  Destino      fora do legado · front/back desacoplados
-  Agentes      Claude Code · 2 streams, 2 em paralelo
-  Isolamento   git worktree + branch por agente (merge no fim)
+  Plano de construção
+  ───────────────────
+  Alvo      sistema inteiro (da documentação)
+  Stack     Node 22 · NestJS 11 · React 19 · PostgreSQL 17
+  Destino   fora do legado · front/back desacoplados
+  Agente    Claude Code
 ```
-
-E roda **vários agentes ao mesmo tempo**, com painel ao vivo:
-
-```
-  2 agentes em paralelo · isolados em git worktree
-
-  ▶ Backend (API)    running   12s   gerando endpoints…
-  ▶ Frontend (SPA)   running   12s   montando as telas…
-```
-
-**Como ele isola e junta o trabalho** (o padrão dos melhores orquestradores):
-
-- Cada agente roda no **seu próprio git worktree + branch** — zero colisão entre eles.
-- Deps gitignored (`node_modules`, docs) são **linkadas** em cada worktree.
-- No fim, o Lumen faz o **merge** das branches; se algo conflitar, ele avisa exatamente qual `git merge` rodar.
 
 **Onde o código nasce — nunca misturado ao legado:**
 
@@ -182,10 +165,9 @@ E roda **vários agentes ao mesmo tempo**, com painel ao vivo:
 ## Como usar (detalhe)
 
 - **`lumen go`** → 📖 documenta o sistema. Gera as specs em `_lumen_docs/`, marca cada afirmação 🟢/🟡/🔴 e, ao terminar, sugere construir.
-- **`lumen build`** → 🔨 constrói (veja a seção acima): escopo, stack exato, nome, e dispara vários agentes em paralelo, isolados por worktree, até o fim.
+- **`lumen build`** → 🔨 constrói (veja a seção acima): escopo, stack exato, nome, e conduz o pipeline até o fim — ancorado na documentação.
 
 > **Pré-requisitos:** Node.js 18+ e um agente de IA (Claude Code, Codex, Cursor...).
-> O modo paralelo usa agentes que rodam *headless* (Claude Code, Codex); com os demais, o Lumen abre um agente interativo.
 > Sem `npm link`? Use `node /caminho/para/Lumen/bin/lumen.js` no lugar de `lumen`.
 
 ---
@@ -205,7 +187,6 @@ A pior perda possível é o único passo que estava em andamento. É um **pause*
 
 ```
 .lumen/                 # estado, config, manifest, principles (interno do Lumen)
-  └── build-logs/       # log de cada agente quando constrói em paralelo
 _lumen_docs/            # as specs extraídas do sistema (a documentação)
   ├── inventory.md, dependencies.md, code-analysis.md
   ├── domain.md, architecture.md, erd-complete.md, c4-*.md
@@ -228,7 +209,7 @@ lumen install       # instala os agentes no projeto
 lumen update        # atualiza os skills preservando suas customizações (hash SHA-256)
 lumen pull          # puxa o sistema comprimido para extração barata e completa
 lumen setup         # prepara o motor de execução (interno, automático)
-lumen build         # constrói — guiado: SISTEMA INTEIRO (vários agentes ∥) ou feature
+lumen build         # constrói — guiado: SISTEMA INTEIRO (dos docs) ou uma feature
 lumen build <f>     # executa direto as tarefas já geradas de uma feature
 lumen build <f> --bg # constrói em background
 lumen runs watch <id> # acompanha uma construção em background
