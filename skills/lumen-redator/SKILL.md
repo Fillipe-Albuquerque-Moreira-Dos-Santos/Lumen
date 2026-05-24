@@ -28,7 +28,7 @@ Leia, nesta ordem:
 4. `.lumen/context/surface.json` → especialmente `modules` e `organization_suggestion.features`.
 5. Demais artefatos em `<output_folder>/` e `.lumen/context/` (gerados por agentes anteriores).
 
-Se a seção `[specs]` ainda não está decidida (granularity vazia), pare e peça ao orquestrador Lumen para executar `references/step-03-specs-organization.md` antes de continuar.
+Se a seção `[specs]` ainda não está decidida (granularity vazia), pare e peça ao orquestrador Lumen para decidir a **organização das specs** (o passo de organização que ele conduz após o Mapeador) antes de continuar.
 
 ## Layout de saída, pasta-por-unit
 
