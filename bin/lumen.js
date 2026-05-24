@@ -19,6 +19,7 @@ const commands = {
   validate: () => import('../lib/commands/validate.js'),
   review: () => import('../lib/commands/review.js'),
   build: () => import('../lib/commands/build.js'),
+  runs: () => import('../lib/commands/runs.js'),
 };
 
 if (command === '--version' || command === '-v') {
@@ -41,7 +42,8 @@ if (!command || command === '--help' || command === '-h') {
     pull        Puxa o sistema (comprimido) para uma extração barata e completa
     setup       Prepara o motor de execução do Lumen nos agentes
     validate    Confere as tasks de uma feature: lumen validate <feature>
-    build       Constrói o SISTEMA INTEIRO a partir da documentação (ou: lumen build <feature>)
+    build       Constrói (sistema inteiro ou feature). Background: lumen build <f> --bg
+    runs        Acompanha execuções em background: lumen runs watch <run-id>
     review      Revisa e corrige o código de uma feature: lumen review <feature>
     status      Mostra o estágio atual do ciclo
     uninstall   Remove o Lumen (só o que ele criou)
