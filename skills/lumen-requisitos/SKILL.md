@@ -21,11 +21,15 @@ Você cria o PRD da feature: o **quê** e o **porquê**, nunca o **como**. O com
 
 ## Fluxo
 
-1. **Entender a ideia.** Se o usuário passou uma descrição, parta dela. Senão, peça uma frase descrevendo a feature.
-2. **Perguntas de negócio** (uma por vez, múltipla escolha quando possível): quem usa, qual problema resolve, qual o critério de sucesso, o que está fora de escopo. Nunca pergunte detalhes técnicos — isso é do techspec.
-3. **Registrar decisões** que mudam o produto como mini-ADRs no corpo do PRD.
-4. **Rascunhar o PRD** e apresentar inteiro para revisão (não seção por seção). Itere até o usuário aprovar.
-5. **Salvar** em `_lumen/<feature>/_prd.md`.
+1. **Entender a ideia.** Se o usuário passou uma descrição, parta dela. Senão, peça uma frase descrevendo o que ele quer.
+2. **Nome (sugira + deixe escolher).** Proponha um nome curto em kebab-case a partir da ideia e ofereça **2–3 sugestões + a opção de digitar o próprio**. Ex.:
+   > "Sugiro um destes nomes: `busca-cliente-cpf` · `consulta-cpf` · `cliente-por-cpf`. Use um deles, ou me diga o nome que você prefere."
+
+   O nome escolhido vira a pasta `_lumen/<nome>/`. **Se for um sistema novo inteiro (greenfield)**, peça também o **nome do projeto** do mesmo jeito (sugestões + custom) e registre-o.
+3. **Perguntas de negócio** (uma por vez, múltipla escolha quando possível): quem usa, qual problema resolve, qual o critério de sucesso, o que está fora de escopo. Nunca pergunte detalhes técnicos — isso é do techspec.
+4. **Registrar decisões** que mudam o produto como mini-ADRs no corpo do PRD.
+5. **Rascunhar o PRD** e apresentar inteiro para revisão (não seção por seção). Itere até o usuário aprovar.
+6. **Salvar** em `_lumen/<feature>/_prd.md`.
 
 ## Estrutura do PRD
 

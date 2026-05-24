@@ -40,13 +40,26 @@ No modo **manual/detalhado**, aprofunde — **pergunte ao usuário como ele quer
 **Como sugerir (faça por ele):**
 
 - **Projeto documentado:** leia do grounding/`_lumen_docs/architecture.md` o que o sistema **já usa** e ofereça isso como a opção **recomendada e pré-selecionada** em cada pergunta. Ex.: *"O sistema já usa Node + Express + PostgreSQL. Recomendo manter para a feature encaixar. Confirma, ou quer outra coisa?"* Mudar de stack é permitido, mas você registra o porquê num ADR.
-- **Greenfield:** não há o que espelhar — apresente opções comuns e peça a escolha, sempre com um fallback "Outro — descreva".
+- **Greenfield:** não há o que espelhar — **sugira o stack e a arquitetura ideais** para o que ele quer construir (veja "Sugerir arquiteturas ideais" abaixo), recomende uma, e deixe escolher (sempre com "Outro — descreva").
 
-O objetivo é que o usuário **só confirme** quando o sistema já tem um stack claro, e **decida** quando é projeto novo. Nunca invente o stack silenciosamente.
+O objetivo é que o usuário **só confirme** quando o sistema já tem um stack claro, e **escolha entre boas opções sugeridas** quando é projeto novo. Nunca invente o stack silenciosamente, nem deixe o usuário no vácuo — **sempre traga sugestões fundamentadas**.
+
+### Sugerir arquiteturas ideais (greenfield ou quando o usuário quer melhorar)
+
+Não pergunte "qual arquitetura?" no vácuo. **Proponha 2–3 arquiteturas adequadas** ao tipo de sistema e ao stack, cada uma com um trade-off em uma linha, e **recomende uma**. Ex. para uma API:
+
+> "Para uma API nesse stack, sugiro:
+> 1. **Camadas (controller→service→repository)** — simples e familiar; ideal pro tamanho atual. ⭐ recomendada
+> 2. **Hexagonal / Ports & Adapters** — desacopla domínio de infra; melhor se for crescer muito.
+> 3. **Vertical slices por feature** — cada caso de uso isolado; ótima pra times paralelos.
+>
+> Vou de **Camadas** se você não tiver preferência. Qual prefere?"
+
+Registre a escolhida (e por que) num ADR.
 
 ## Fase 2 — Desenhar fundamentado
 
-1. **Proponha a arquitetura espelhando os padrões existentes.** Se o sistema usa, por exemplo, arquitetura em camadas, repositórios, e um certo padrão de erro, a feature segue o **mesmo** padrão. Desvios só com justificativa explícita em ADR. (Quando documentado, isto vem do grounding; quando greenfield, do stack escolhido na Fase 1.)
+1. **Desenhe na arquitetura definida na Fase 1.** Em projeto documentado, **espelhe os padrões existentes** (camadas, repositórios, padrão de erro) — desvios só com ADR. Em greenfield, use a **arquitetura ideal escolhida** acima.
 2. **ADRs** para cada decisão significativa, em `_lumen/<feature>/adrs/adr-NNN.md` (use `references/adr-template.md`): decisão, alternativas rejeitadas, consequências. Mudança de stack vs. o existente é sempre um ADR.
 3. **Rascunhe o TechSpec** com `references/techspec-template.md`. YAGNI sem dó. Cada objetivo do PRD mapeia para um componente. Cada regra 🟢 do grounding aparece como restrição honrada. A seção de stack reflete as respostas da Fase 1.
 4. **Revise** com o usuário (rascunho inteiro). Itere até aprovar.
