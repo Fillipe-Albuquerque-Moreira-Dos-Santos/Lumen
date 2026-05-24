@@ -75,6 +75,21 @@ Não pergunte "qual arquitetura?" no vácuo. **Proponha 2–3 arquiteturas adequ
 
 Registre a escolhida (e por que) num ADR.
 
+### Passo 3 — Nome do sistema (sugira + SEMPRE deixe digitar)
+
+Em **greenfield** e em **modernização**, pergunte o **nome** — ele é usado no README, no artefato técnico (ex.: `pom` artifactId/name, package), no pacote do frontend e no título da SPA, **sem mudar stack nem contratos**.
+
+> 🛑 **NUNCA decida o nome sozinho.** Apresente **2–3 sugestões** fiéis ao domínio documentado (com uma nota de uso em cada) e **SEMPRE inclua, como última opção, `✎ Outra — eu digito o nome`** aceitando texto livre. Espere a resposta. Aceite **exatamente** o que o usuário digitar (gere o slug técnico a partir dele).
+
+Ex.:
+> "Qual o **nome** do sistema?
+> 1. **Cadastro de Clientes** — fiel ao domínio; artefato segue como `clientes-api`.
+> 2. **ClientesApp** — curto/moderno; bom pro pacote npm e título da SPA.
+> 3. **Gestão de Clientes** — tom de produto; bom pro título visível.
+> 4. **✎ Outra — eu digito o nome**"
+
+Registre o nome escolhido no `_techspec.md`.
+
 ## Fase 2 — Desenhar fundamentado
 
 1. **Desenhe na arquitetura definida na Fase 1.** Em projeto documentado, **espelhe os padrões existentes** (camadas, repositórios, padrão de erro) — desvios só com ADR. Em greenfield, use a **arquitetura ideal escolhida** acima.
