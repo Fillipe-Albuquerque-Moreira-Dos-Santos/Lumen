@@ -2,10 +2,19 @@
 
 ## 1. Instalar o Lumen
 
-Na raiz do seu projeto:
+Setup único na máquina (uma vez só):
 
 ```bash
-npx lumen install
+git clone https://github.com/Fillipe-Albuquerque-Moreira-Dos-Santos/Lumen.git
+cd Lumen && npm install && npm link
+```
+
+> O Lumen ainda não está publicado no npm — por isso instale via `git clone` + `npm link` (não use `npx lumen`, que puxaria um pacote homônimo de outro projeto). Sem `npm link`? Use `node /caminho/para/Lumen/bin/lumen.js` no lugar de `lumen`.
+
+Depois, na raiz do **seu projeto**:
+
+```bash
+lumen install
 ```
 
 O instalador detecta seus agentes de IA, copia os skills `lumen-*` para `.claude/skills/` e `.agents/skills/`, escreve o arquivo de entrada (CLAUDE.md / AGENTS.md / …), cria `.lumen/` e atualiza o `.gitignore`. Ele **nunca** modifica seu código — só cria arquivos novos.
@@ -51,6 +60,7 @@ lumen install      # instala os agentes Lumen
 lumen update       # atualiza skills preservando suas customizações
 lumen setup        # prepara o motor de execução
 lumen build <f>    # executa o build de uma feature (motor real)
-lumen status       # estágio atual do ciclo
+lumen build <f> --bloco "<nome>"  # constrói só um bloco temático
+lumen status       # estágio atual do ciclo (com progresso por bloco)
 lumen uninstall    # remove só o que o Lumen criou
 ```

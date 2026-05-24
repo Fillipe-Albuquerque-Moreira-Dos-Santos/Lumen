@@ -4,9 +4,11 @@ Um passo a passo do ciclo Lumen num projeto fictício `loja-api` (Node + Express
 
 ## 1. Instalar
 
+Com o Lumen já linkado na máquina (veja [Começando](../docs/getting-started.md)):
+
 ```bash
 cd loja-api
-npx lumen install
+lumen install
 lumen setup
 ```
 
