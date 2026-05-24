@@ -38,6 +38,10 @@ Saiba o que o usuário quer (pergunte se não estiver claro):
 
 ### Passo 2 — Escolha granular do stack (sempre versão exata, decisão do usuário)
 
+> 🛑 **HARD GATE — esta escolha é INTERATIVA e do usuário, SEMPRE.** NUNCA assuma o stack nem diga "você escolheu Java 21" sem ter **perguntado de verdade**. Para **cada camada**, apresente as opções como **lista numerada** (com a recomendada ⭐) e **PARE, aguardando a resposta** — uma camada por vez: linguagem → versão, framework → versão, banco, frontend, testes, infra. Só avance para a próxima camada depois que o usuário responder a atual.
+>
+> **Isto vale MESMO no modo automático.** "Autônomo" = não pedir confirmação redundante **entre as etapas do pipeline**; **não** significa decidir o stack por ele. Stack, versão e arquitetura são **as decisões que só o usuário faz** — apresente e espere. Se o brief disser uma coisa (ex.: Java 17) e o usuário quiser outra, **vale o usuário**.
+
 **Nada genérico** ("Java", "Node"). Para **cada camada**, ofereça opções e, ao escolher uma linguagem/framework, **abra um submenu da versão exata**. Você marca a recomendada com ⭐ (LTS/atual), mas **quem decide cada item é o usuário** — sempre com **"outra — eu digito"**.
 
 > 🎯 **Versão exata, sempre.** As versões listadas são **atalhos, não limites**. O usuário pode **digitar a versão exata que quiser** em qualquer camada — ex.: `Angular 18`, `Angular 18.2.1`, `Angular 19.1.0`, `Java 21.0.5`, `Node 22.11`. Aceite e **use exatamente o que ele digitar** (registre a versão precisa no `_techspec.md` e no ADR). Nunca arredonde nem troque a versão por conta própria.
