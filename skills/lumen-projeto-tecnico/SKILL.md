@@ -103,6 +103,7 @@ Registre o nome escolhido no `_techspec.md`.
 Para **criar um sistema novo** ou **modernizar**, o TechSpec tem que ser **completo e concreto** — o build executa exatamente o que estiver aqui, então não deixe nada vago. Especifique:
 
 - [ ] **Stack com versões exatas** — linguagem, runtime, frameworks back/front, banco, libs principais (versão precisa que o usuário escolheu).
+- [ ] **Local do projeto (não misture com o legado)** — em **modernização**, o sistema novo (v2) nasce **FORA** do projeto legado, em pasta(s) irmã(s) (ex.: `../<projeto>-v2`), com **frontend e backend DESACOPLADOS** em pastas/repos separados. Em **greenfield**, pasta própria isolada. Em **evoluir no stack atual**, no lugar. Honre o destino que o `lumen build` indicou no kickoff.
 - [ ] **Estrutura do projeto** — pastas/módulos, onde cada coisa fica, organização de arquivos.
 - [ ] **Arquitetura e camadas** — responsabilidade de cada camada, fluxo de uma requisição ponta a ponta.
 - [ ] **Modelo de dados** — entidades, campos com tipos, obrigatoriedade, relações, índices, migrations.

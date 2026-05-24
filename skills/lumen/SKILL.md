@@ -189,6 +189,13 @@ Nada além disso é perguntado — o resto é inferido da documentação.
 
 **Construir o SISTEMA INTEIRO a partir dos docs** (gatilho: `lumen build` sem feature, ou "construa o sistema inteiro"): a **documentação inteira é a spec**. Leia **todos os specs por unit** em `_lumen_docs/` (`<unit>/requirements.md|design.md|tasks.md`) + `architecture.md`/`domain.md`/`erd-complete.md`/`openapi/`, e derive as tarefas executáveis de **cada unit** — em **subagentes paralelos, um por unit**. Não pergunte unit por unit; só a pergunta de stack acima.
 
+> 🛑 **Onde o código nasce (destino — não misture com o legado):**
+> - **Evoluir no stack atual** → modifique o sistema **no lugar**, no próprio projeto.
+> - **Modernizar** → é um sistema **NOVO (v2)**. Crie-o **FORA do projeto legado**, em pasta(s) **irmã(s)** (ex.: `../<projeto>-v2`). **Nunca** escreva dentro do legado (não toque nele). **Frontend e backend DESACOPLADOS**, em pastas/repos separados (ex.: `../<nome>-backend` e `../<nome>-frontend`).
+> - **Greenfield** → crie na **própria pasta** (`../<nome>`), nunca misturado a código existente; se o diretório atual estiver vazio, pode nascer aqui mesmo. Com front+back, mantenha-os **desacoplados**.
+>
+> O `lumen build` já calcula esse destino e o passa no kickoff — **honre exatamente o caminho indicado**.
+
 **Depois, execute sem pausar** (você, agente, conduz tudo, inclusive rodando os comandos de terminal):
 
 ```
