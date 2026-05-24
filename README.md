@@ -261,6 +261,30 @@ Aí mostra o **plano** e pede confirmação:
 
 > **Atalhos:** `lumen build <feature>` executa direto as tarefas já geradas; `lumen build <feature> --bg` roda em background (acompanhe com `lumen runs watch <id>`); `lumen build <feature> --dry-run` valida o pipeline **sem escrever código**.
 
+### Blocos temáticos — construa um tema por vez
+
+Ao gerar as tarefas, o Lumen as **agrupa em blocos por tema** (ex.: *Autenticação*, *Pedidos*, *Notificações*) — cada bloco reúne as tasks relacionadas àquele assunto. O agrupamento vai no campo `bloco:` de cada task e num índice `_lumen/<feature>/_plan.md`:
+
+```
+# Plano de construção — checkout
+## Bloco 1 — Autenticação
+  - task_01  JWT middleware
+  - task_02  Login endpoint
+## Bloco 2 — Pedidos
+  - task_03  Criar pedido
+  - task_04  Calcular total
+```
+
+Assim você constrói **um bloco de cada vez**, em vez de tudo de uma vez:
+
+```bash
+lumen build checkout --bloco "Autenticação"   # roda só esse bloco (+ dependências pendentes)
+lumen build checkout --bloco                   # lista os blocos e o progresso de cada um
+lumen status                                    # progresso por bloco de cada feature
+```
+
+O motor continua executando a lista de tasks ligada por dependências; o bloco é uma **camada de organização do Lumen por cima** — as tasks de outros blocos ficam em espera enquanto o bloco-alvo roda. Como cada bloco só depende dos anteriores, dá pra avançar tema a tema, revisando entre eles.
+
 ---
 
 ## O motor de execução
@@ -302,7 +326,7 @@ _lumen_docs/            # as specs extraídas do sistema (a documentação)
   ├── domain.md, architecture.md, erd-complete.md, c4-*.md
   ├── confidence-report.md, gaps.md
   └── <unit>/requirements.md · design.md · tasks.md
-_lumen/<feature>/       # artefatos de cada feature construída + regression-watch
+_lumen/<feature>/       # tasks (task_NN.md) + _plan.md (blocos) + regression-watch
 
 # Ao MODERNIZAR, o sistema novo nasce FORA do legado (não mistura):
 ../<sistema>-backend/   # backend novo, desacoplado
@@ -324,6 +348,7 @@ O Lumen **nunca modifica seu código no modo Documentar** — só cria arquivos 
 | `lumen setup` | Prepara o motor de execução nos agentes (interno, automático) |
 | `lumen build` | Constrói — guiado: **sistema inteiro** (dos docs) ou uma **feature** |
 | `lumen build <feature>` | Executa direto as tarefas já geradas de uma feature |
+| `lumen build <feature> --bloco "<nome>"` | Constrói só um **bloco temático** (+ dependências). Sem nome: lista os blocos |
 | `lumen build <feature> --bg` | Constrói em background |
 | `lumen build <feature> --dry-run` | Valida o pipeline sem escrever código |
 | `lumen runs watch <id>` | Acompanha uma construção em background |

@@ -42,7 +42,7 @@ if (!command || command === '--help' || command === '-h') {
     pull        Puxa o sistema (comprimido) para uma extração barata e completa
     setup       Prepara o motor de execução do Lumen nos agentes
     validate    Confere as tasks de uma feature: lumen validate <feature>
-    build       Constrói (sistema inteiro ou feature). Background: lumen build <f> --bg
+    build       Constrói (sistema inteiro ou feature). Por bloco: lumen build <f> --bloco "<nome>". Background: --bg
     runs        Acompanha execuções em background: lumen runs watch <run-id>
     review      Revisa e corrige o código de uma feature: lumen review <feature>
     status      Mostra o estágio atual do ciclo
