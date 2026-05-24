@@ -105,6 +105,8 @@ Toda afirmação nas specs leva uma marca — é o que torna a documentação **
 | 🟡 **INFERIDO** | Deduzido de padrões — pode estar errado |
 | 🔴 **LACUNA** | Não determinável pelo código — precisa de validação humana |
 
+Quando a confiança geral fica **abaixo de 95%**, o Lumen não para no número — ele entrega um **plano priorizado de como chegar a ≥95%** (resolver 🔴, confirmar 🟡, destravar bloqueios como código corrompido ou ausência de testes), com o **ganho estimado** de cada ação.
+
 ---
 
 ## Passo a passo — do `git clone` ao uso
@@ -183,24 +185,32 @@ O Lumen documenta o sistema e gera tudo em **`_lumen_docs/`** (cada afirmação 
 
 ---
 
-### Parte C — Construir uma feature 🔨 *(quando quiser evoluir o código)*
+### Parte C — Construir 🔨 *(quando quiser evoluir o código)*
 
-**C1.** 🖥️ Uma vez, prepare o motor de execução:
+**C1.** 🖥️ Uma vez, prepare o motor (interno, automático — você não instala nada à parte):
 
 ```bash
 lumen setup
 ```
 
-**C2.** 💬 No `/lumen`, descreva a feature (ex.: *"adicionar cupom de desconto"*). Ele monta requisitos → projeto técnico → tarefas (e pergunta/sugere o stack que o sistema já usa).
-
-**C3.** 🖥️ Construa e revise de verdade:
+**C2.** 🖥️ Um comando só — você escolhe o escopo:
 
 ```bash
-lumen build cupom-desconto      # escreve o código
-lumen review cupom-desconto     # revisa e corrige
+lumen build
 ```
 
-**C4.** 💬 Rode `/lumen` de novo (modo **Verificar**) — ele confere que nenhuma regra 🟢 regrediu.
+Ele pergunta:
+- **O sistema inteiro** (a partir de toda a documentação), ou
+- **Uma feature específica** (você descreve numa frase).
+
+A criação é **guiada** (estilo workflow completo), perguntando só o essencial **com sugestões**:
+- 🏷️ **Nome** — sugere 2–3 e deixa você digitar o seu;
+- 🧩 **Linguagem/stack** — sugere o que o sistema já usa (ou ideal, em greenfield);
+- 🏛️ **Arquitetura** — sugere 2–3 ideais com trade-offs e recomenda uma.
+
+Depois roda **autônomo e em paralelo** (vários subagentes ao mesmo tempo) até o fim: requisitos → projeto técnico → tarefas → **código** → revisão. O código é escrito pelo **motor de execução** (concorrente, com retries), não à mão.
+
+**C3.** 💬 Rode `/lumen` (modo **Verificar**) — confere que nenhuma regra 🟢 regrediu.
 
 ---
 
@@ -236,13 +246,15 @@ _lumen/<feature>/       # artefatos de cada feature construída + regression-wat
 ## CLI
 
 ```bash
+lumen go           # ⭐ faz tudo: instala, empacota e abre seu agente já documentando
 lumen install      # instala os agentes no projeto
 lumen update       # atualiza os skills preservando suas customizações (hash SHA-256)
 lumen pull         # puxa o sistema comprimido para extração barata e completa
-lumen setup        # prepara o motor de execução
-lumen validate <f> # confere as tarefas de uma feature
-lumen build <f>    # constrói uma feature
+lumen setup        # prepara o motor de execução (interno, automático)
+lumen build        # constrói — pergunta: o SISTEMA INTEIRO (dos docs) ou uma feature
+lumen build <f>    # executa direto as tarefas já geradas de uma feature
 lumen review <f>   # revisa e corrige o código de uma feature
+lumen validate <f> # confere as tarefas de uma feature
 lumen status       # mostra o estágio atual do ciclo
 lumen uninstall    # remove só o que o Lumen criou
 ```
